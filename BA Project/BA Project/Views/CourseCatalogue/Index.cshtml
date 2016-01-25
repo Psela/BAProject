@@ -1,4 +1,6 @@
-﻿
+﻿@Model 
+@*BAProjectEntities*@
+
 @{
     ViewBag.Title = "Index";
 }
@@ -16,12 +18,38 @@
 <br/>
 <br/>
 
+
 <div id="relativelayout">
     <div id="profilepicture">
         <img src="~/Images/placeholderimage.png" height="200"
              width="200" />
     </div>
-    <div id="contact">Contact Details</div>
+    <div id="contact">
+        <table cellspacing="20">
+            <tr> <th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" /></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" name="address" /></td>
+            </tr>
+            <tr>
+                <td>Postcode:</td>
+                <td><input type="text" name="postcode" /></td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td><input type="text" name="mobile" /></td>
+            </tr>
+        </table>
+    
+    </div>
     <div id="description">Description</div>
     <div id="Calendar">Calendar</div>
     <br />

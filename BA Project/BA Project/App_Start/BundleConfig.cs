@@ -25,6 +25,7 @@ namespace BA_Project
 
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
+                "~/Content/course.css",
                 "~/Content/site.css"));
     }
   }

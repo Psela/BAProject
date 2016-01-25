@@ -112,6 +112,7 @@ namespace BA_Project.Controllers
                 else if (existingUserName.password == model.Password)
                 {
                     result = SignInStatus.Success;
+                    
                 }
                 else
                 {

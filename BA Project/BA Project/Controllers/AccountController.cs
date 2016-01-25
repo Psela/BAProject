@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BA_Project.Models;
-using Model;
+using DatabaseModel;
 
 namespace BA_Project.Controllers
 {
@@ -98,7 +98,7 @@ namespace BA_Project.Controllers
             try
             {
             var result = new SignInStatus();
-            using  (var context = new BA_ProjectEntities())
+            using  (var context = new BAProjectEntities())
             {
                 var existingUserName = context.users.FirstOrDefault(x => x.username.Equals(model.Login));
                 if (existingUserName == null)

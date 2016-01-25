@@ -239,9 +239,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{fa682054-1c1c-4867-9c01-60fb7121df24}</Project>
-      <Name>Model</Name>
+    <ProjectReference Include="..\DatabaseModel\DatabaseModel.csproj">
+      <Project>{397c9af2-cc22-4a65-976a-4cc08d4a106e}</Project>
+      <Name>DatabaseModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

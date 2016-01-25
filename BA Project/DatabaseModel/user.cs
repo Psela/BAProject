@@ -19,7 +19,14 @@ namespace DatabaseModel
         public string password { get; set; }
         public string email { get; set; }
         public int type_of_user { get; set; }
+        public string phone_number { get; set; }
+        public string address_firstline { get; set; }
+        public string address_secondline { get; set; }
+        public string address_city { get; set; }
+        public string postcode { get; set; }
+        public string profile_picture { get; set; }
+        public string description { get; set; }
     
-        public virtual type_of_user type_of_user1 { get; set; }
+        public virtual type_of_users type_of_users { get; set; }
     }
 }

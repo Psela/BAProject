@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="082a3c38510e4bb0a2fb7e6fac2d9c66" Name="Diagram1">
-        <EntityTypeShape EntityType="BA_ProjectModel.type_of_user" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BA_ProjectModel.user" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="BA_ProjectModel.FK__users__type_of_u__1920BF5C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BA_ProjectModel.type_of_users" Width="1.5" PointX="0.75" PointY="1.5" />
+        <AssociationConnector Association="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

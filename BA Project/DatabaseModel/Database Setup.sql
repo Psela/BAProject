@@ -1,7 +1,7 @@
 ﻿DROP TABLE BA_Project.dbo.users;
 DROP TABLE BA_Project.dbo.type_of_user;
 
-CREATE TABLE BA_Project.dbo.type_of_user
+CREATE TABLE BA_Project.dbo.type_of_users
 (	type_of_user_id INT PRIMARY KEY,
 	name VARCHAR(50)
 );
@@ -13,7 +13,7 @@ CREATE TABLE BA_Project.dbo.users
 	password VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
 	phone_number VARCHAR(15) NOT NULL,
-	type_of_user INT NOT NULL REFERENCES type_of_user,
+	type_of_user INT NOT NULL REFERENCES type_of_users,
 	address_firstline VARCHAR(60) NOT NULL,
 	address_secondline VARCHAR(60),
 	address_city VARCHAR(60) NOT NULL,

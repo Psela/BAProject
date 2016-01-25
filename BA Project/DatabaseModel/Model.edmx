@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BA_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="type_of_user">
+    <Schema Namespace="BA_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="type_of_users">
           <Key>
             <PropertyRef Name="type_of_user_id" />
           </Key>
@@ -20,13 +20,20 @@
           <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="type_of_user" Type="int" Nullable="false" />
+          <Property Name="address_firstline" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="address_secondline" Type="varchar" MaxLength="60" />
+          <Property Name="address_city" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="postcode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="profile_picture" Type="text" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__users__type_of_u__1920BF5C">
-          <End Role="type_of_user" Type="Self.type_of_user" Multiplicity="1" />
+        <Association Name="FK__users__type_of_u__2A4B4B5E">
+          <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="type_of_user">
+            <Principal Role="type_of_users">
               <PropertyRef Name="type_of_user_id" />
             </Principal>
             <Dependent Role="users">
@@ -35,26 +42,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BA_ProjectModelStoreContainer">
-          <EntitySet Name="type_of_user" EntityType="Self.type_of_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__users__type_of_u__1920BF5C" Association="Self.FK__users__type_of_u__1920BF5C">
-            <End Role="type_of_user" EntitySet="type_of_user" />
+          <AssociationSet Name="FK__users__type_of_u__2A4B4B5E" Association="Self.FK__users__type_of_u__2A4B4B5E">
+            <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BA_ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="type_of_user">
-          <Key>
-            <PropertyRef Name="type_of_user_id" />
-          </Key>
-          <Property Name="type_of_user_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="users" Relationship="Self.FK__users__type_of_u__1920BF5C" FromRole="type_of_user" ToRole="users" />
-        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="users_id" />
@@ -64,50 +62,72 @@
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="type_of_user" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="type_of_user1" Relationship="Self.FK__users__type_of_u__1920BF5C" FromRole="users" ToRole="type_of_user" />
+          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="address_firstline" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address_secondline" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address_city" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="profile_picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="type_of_users" Relationship="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" FromRole="user" ToRole="type_of_users" />
         </EntityType>
-        <Association Name="FK__users__type_of_u__1920BF5C">
-          <End Role="type_of_user" Type="Self.type_of_user" Multiplicity="1" />
-          <End Role="users" Type="Self.user" Multiplicity="*" />
+        <EntityContainer Name="BAProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="type_of_users" EntityType="BA_ProjectModel.type_of_users" />
+          <AssociationSet Name="FK__users__type_of_u__2A4B4B5E" Association="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E">
+            <End Role="type_of_users" EntitySet="type_of_users" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="type_of_users">
+          <Key>
+            <PropertyRef Name="type_of_user_id" />
+          </Key>
+          <Property Name="type_of_user_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" FromRole="type_of_users" ToRole="user" />
+        </EntityType>
+        <Association Name="FK__users__type_of_u__2A4B4B5E">
+          <End Type="BA_ProjectModel.type_of_users" Role="type_of_users" Multiplicity="1" />
+          <End Type="BA_ProjectModel.user" Role="user" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="type_of_user">
+            <Principal Role="type_of_users">
               <PropertyRef Name="type_of_user_id" />
             </Principal>
-            <Dependent Role="users">
+            <Dependent Role="user">
               <PropertyRef Name="type_of_user" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BAProjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="type_of_user" EntityType="Self.type_of_user" />
-          <EntitySet Name="users" EntityType="Self.user" />
-          <AssociationSet Name="FK__users__type_of_u__1920BF5C" Association="Self.FK__users__type_of_u__1920BF5C">
-            <End Role="type_of_user" EntitySet="type_of_user" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BA_ProjectModelStoreContainer" CdmEntityContainer="BAProjectEntities">
-          <EntitySetMapping Name="type_of_user">
-            <EntityTypeMapping TypeName="BA_ProjectModel.type_of_user">
-              <MappingFragment StoreEntitySet="type_of_user">
-                <ScalarProperty Name="type_of_user_id" ColumnName="type_of_user_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="BA_ProjectModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="profile_picture" ColumnName="profile_picture" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="address_city" ColumnName="address_city" />
+                <ScalarProperty Name="address_secondline" ColumnName="address_secondline" />
+                <ScalarProperty Name="address_firstline" ColumnName="address_firstline" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
                 <ScalarProperty Name="users_id" ColumnName="users_id" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="type_of_user" ColumnName="type_of_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_of_users">
+            <EntityTypeMapping TypeName="BA_ProjectModel.type_of_users">
+              <MappingFragment StoreEntitySet="type_of_users">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type_of_user_id" ColumnName="type_of_user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -25,7 +25,7 @@ namespace DatabaseModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<type_of_user> type_of_user { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<type_of_users> type_of_users { get; set; }
     }
 }

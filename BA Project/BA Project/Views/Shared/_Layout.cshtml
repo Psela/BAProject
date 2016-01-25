@@ -22,10 +22,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
+                    <li>@Html.ActionLink("Help", "Help", "Home")</li> 
+                  <li id="searchBox">
+                    @Html.TextBox("searchinput", "Search")
+                    <input type="submit" value="Search" />
+                  </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+              @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

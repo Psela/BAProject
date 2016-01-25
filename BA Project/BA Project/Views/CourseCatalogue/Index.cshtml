@@ -1,31 +1,31 @@
-﻿@Model
+﻿@Model 
 @*BAProjectEntities*@
 
 @{
-  ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 
 <div id="relativelayout">
-  <div id="profilepicture">
-    <img src="~/Images/placeholderimage.png" height="200"
-         width="200" />
-  </div>
+    <div id="profilepicture">
+        <img src="~/Images/placeholderimage.png" height="200"
+             width="200" />
+    </div>
   @using (Html.BeginForm("UpdateData", "CourseCatalogue"))
   {
     <div id="contact">
-      <table cellspacing="20">
-        <tr> <th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
-        <tr>
-          <td>Name:</td>
-          <td><input type="text" name="name" /></td>
-        </tr>
-        <tr>
-          <td>Email:</td>
-          <td><input type="text" name="email" /></td>
-        </tr>
-        <tr>
-          <td>Address:</td>
+        <table cellspacing="20">
+            <tr> <th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" /></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
           <td><input type="text" name="addressline1" /></td>
         </tr>
         <tr>
@@ -35,23 +35,30 @@
         <tr>
           <td>City:</td>
           <td><input type="text" name="city" /></td>
-        </tr>
-        <tr>
-          <td>Postcode:</td>
-          <td><input type="text" name="postcode" /></td>
-        </tr>
-        <tr>
-          <td>Mobile:</td>
+            </tr>
+            <tr>
+                <td>Postcode:</td>
+                <td><input type="text" name="postcode" /></td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
           <td><input type="text" name="phone" /></td>
-        </tr>
-      </table>
-
+            </tr>
+        </table>
+    
     </div>
     <div id="description">
-      Description
-      <input type="text" name="description" />
+        <table>
+        <tr><th colspan="2" style="text-align:center; font-size:larger;">Description</th></tr>
+            <tr>
+                <td>
+                <textarea rows="10" cols="50" name="desc"></textarea></td>
+            </tr>
+        </table> </div>
+    <div id="Calendar">Calendar
+ 
+    
     </div>
-    <input type="submit" value="Update" />
-  }
-  <div id="Calendar">Calendar</div>
+    <br />
+    <br />
 </div>

@@ -9,24 +9,27 @@ namespace BA_Project.Controllers
 {
     public class CourseCatalogueController : Controller
     {
-        // GET: CourseRegistration
         public ActionResult Index()
         {
-          if (Request.IsAjaxRequest())
-          {
-            return UpdateData();
-          }
             return View();
         }
 
-        private PartialViewResult UpdateData()
+        public void UpdateData(string description, string addressline1, string addressline2, string postcode, string phone, string email, string city)
         {
           try
           {
             using (var context = new BAProjectEntities())
             {
-              user user = context.users.Where(u=>u.users_id.Equals(userid);
-              user.description =
+              user user = context.users.FirstOrDefault(u=>u.users_id.Equals(1));//userid));
+              user.description = description;
+              user.email= email;
+              user.address_city= city;
+              user.address_firstline= addressline1;
+              user.address_secondline=addressline2;
+              user.postcode= postcode;
+              user.phone_number=phone;
+              
+              context.SaveChanges();
             }
           }
           catch (Exception e)

@@ -1,29 +1,57 @@
-﻿
+﻿@Model
+@*BAProjectEntities*@
+
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
-<br/><br/>
-@*<center>
-    <div class="btn-group">
-        <button type="button" class="btn btn-primary">View Profile</button>
-        <button type="button" class="btn btn-primary">Course Catalogue</button>
-        <button type="button" class="btn btn-primary">Help</button>
-        <button type="button" class="btn btn-primary">Logout</button>
-    </div>
-
-</center>*@
-<br/>
-<br/>
 
 <div id="relativelayout">
-    <div id="profilepicture">
-        <img src="~/Images/placeholderimage.png" height="200"
-             width="200" />
+  <div id="profilepicture">
+    <img src="~/Images/placeholderimage.png" height="200"
+         width="200" />
+  </div>
+  @using (Html.BeginForm("UpdateData", "CourseCatalogue"))
+  {
+    <div id="contact">
+      <table cellspacing="20">
+        <tr> <th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="name" /></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" name="email" /></td>
+        </tr>
+        <tr>
+          <td>Address:</td>
+          <td><input type="text" name="addressline1" /></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="text" name="addressline2" /></td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td><input type="text" name="city" /></td>
+        </tr>
+        <tr>
+          <td>Postcode:</td>
+          <td><input type="text" name="postcode" /></td>
+        </tr>
+        <tr>
+          <td>Mobile:</td>
+          <td><input type="text" name="phone" /></td>
+        </tr>
+      </table>
+
     </div>
-    <div id="contact">Contact Details</div>
-    <div id="description">Description</div>
-    <div id="Calendar">Calendar</div>
-    <br />
-    <br />
+    <div id="description">
+      Description
+      <input type="text" name="description" />
+    </div>
+    <input type="submit" value="Update" />
+  }
+  <div id="Calendar">Calendar</div>
 </div>

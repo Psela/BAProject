@@ -1,9 +1,11 @@
 ﻿using DatabaseModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace BA_Project.Controllers
 {
@@ -32,10 +34,19 @@ namespace BA_Project.Controllers
               context.SaveChanges();
             }
           }
-          catch (Exception e)
+          catch(Exception ex)
           {
-            throw;
+            if (ex is EntityException || ex is NullReferenceException)
+            {
+              MessageBox.Show("Couldn't connect to the database. Please try again later.");
+            }
+            else
+            {
+              throw;
+            }
           }
+
+          Response.Redirect("~/CourseCatalogue/Index");
         }
     }
 }

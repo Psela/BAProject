@@ -67,7 +67,7 @@ namespace BA_Project.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginModel model, string returnUrl)
+        public ActionResult Login(LoginModel model, string returnUrl)
         {
             var result = CheckLogin(model);
 
@@ -121,7 +121,7 @@ namespace BA_Project.Controllers
             }
             return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

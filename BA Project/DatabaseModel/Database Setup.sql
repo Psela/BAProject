@@ -1,5 +1,5 @@
 ﻿DROP TABLE BA_Project.dbo.users;
-DROP TABLE BA_Project.dbo.type_of_user;
+DROP TABLE BA_Project.dbo.type_of_users;
 
 CREATE TABLE BA_Project.dbo.type_of_users
 (	type_of_user_id INT PRIMARY KEY,
@@ -24,10 +24,10 @@ CREATE TABLE BA_Project.dbo.users
 
 --Dummy Data
 
-INSERT INTO BA_Project.dbo.type_of_user VALUES(1,'Professor');
-INSERT INTO BA_Project.dbo.type_of_user VALUES(2,'Student');
-INSERT INTO BA_Project.dbo.type_of_user VALUES(3,'Registrar');
-INSERT INTO BA_Project.dbo.type_of_user VALUES(4,'IT Support');
+INSERT INTO BA_Project.dbo.type_of_users VALUES(1,'Professor');
+INSERT INTO BA_Project.dbo.type_of_users VALUES(2,'Student');
+INSERT INTO BA_Project.dbo.type_of_users VALUES(3,'Registrar');
+INSERT INTO BA_Project.dbo.type_of_users VALUES(4,'IT Support');
 
 INSERT INTO BA_Project.dbo.users VALUES
 (

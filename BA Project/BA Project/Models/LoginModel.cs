@@ -43,17 +43,25 @@ namespace BA_Project.Models
                 //var result = new SignInStatus();
                 using (var context = new BAProjectEntities())
                 {
-                    var existingUserName = context.users.FirstOrDefault(x => x.username.Contains(_username));
+                    var existingUser = context.users.FirstOrDefault(x => x.username.Contains(_username));
 
-                    if (existingUserName.password.Contains(_password))
+                    if (existingUser.password.Contains(_password))
                     {
 
                         //setLogin(true);
                         //Assigns corresponding information for the logged in user
-                        user.email = existingUserName.email;
-                        user.username = existingUserName.username;
-                        user.type_of_user = existingUserName.type_of_user;
-                        user.users_id = existingUserName.users_id;
+                        user = existingUser;
+
+                        //user.email = existingUserName.email;
+                        //user.username = existingUserName.username;
+                        //user.type_of_user = existingUserName.type_of_user;
+                        //user.users_id = existingUserName.users_id;
+                        //user.address_city = existingUserName.address_city;
+                        //user.address_firstline = existingUserName.address_firstline;
+                        //user.address_secondline = existingUserName.address_secondline;
+                        //user.description = existingUserName.description;
+                        //user.phone_number = existingUserName.phone_number;
+                        //user.postcode = existingUserName
                         return true;
                     }
                     else

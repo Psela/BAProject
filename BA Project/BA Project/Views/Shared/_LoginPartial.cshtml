@@ -10,14 +10,15 @@
         <li>
             @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
       <li>@Html.ActionLink("View Profile", "Index", "Profile")</li>
       <li>@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
+      <li>@Html.ActionLink("Report Card","Index","ReportCard")</li>
       <li>@Html.ActionLink("Help", "Help", "Home")</li>
       <li id="searchBox">
         @Html.TextBox("searchinput", "Search")
         <input type="submit" value="Search" />
       </li>
+      <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
 }

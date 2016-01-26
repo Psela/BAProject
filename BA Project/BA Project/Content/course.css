@@ -9,6 +9,7 @@
 #profilepicture {
     position:absolute;  
    left:300px;
+   top:50px;
    /*float:left;*/
 }
 
@@ -19,6 +20,7 @@
     right:300px;
     height:200px;
     width:200px;
+       top:50px;
     /*background-color:blue;*/
 /*box-shadow:10px 10px 5px #808080;*/
 border-radius:10px;
@@ -40,7 +42,8 @@ border-radius:10px;
 
 
 #Calendar {
-     background-color:olive;
+     /*background-color:olive;*/
+     border:2px groove black;
      position:absolute;
      /*float:right;*/
        top:300px;

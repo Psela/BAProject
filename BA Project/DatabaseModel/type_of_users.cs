@@ -12,9 +12,9 @@ namespace DatabaseModel
     using System;
     using System.Collections.Generic;
     
-    public partial class type_of_user
+    public partial class type_of_users
     {
-        public type_of_user()
+        public type_of_users()
         {
             this.users = new HashSet<user>();
         }

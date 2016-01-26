@@ -43,9 +43,9 @@ namespace BA_Project.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -63,10 +63,10 @@ namespace BA_Project.Controllers
 
         //
         // GET: /Account/Login
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -75,44 +75,42 @@ namespace BA_Project.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.LoginModel model , string returnUrl)
+        public ActionResult Login(Models.LoginModel user)
         {
             //var result = login.CheckLogin(model);
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return  View(model);
+                if (user.CheckLogin(user.Login, user.Password))
+                {
+                    FormsAuthentication.SetAuthCookie(user.Login, user.RememberMe);
+                    resetRequest();
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
-            else if (ModelState.IsValid)
+            else if (!ModelState.IsValid)
             {
-                if (model.CheckLogin(model.Login, model.Password))
-	            {
-		         FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
-                 return RedirectToAction("Index", "Home");
+                return View(user);
             }
+           
+            return View(user);
 
         }
-            return View(model);
 
-            
-                    
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //switch (result)
-            //{
-            //    case SignInStatus.Success:
-            //        return RedirectToLocal("~/CourseCatalogue/Index");
-            //    case SignInStatus.LockedOut:
-            //        return View("Lockout");
-            //    case SignInStatus.RequiresVerification:
-            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-            //    case SignInStatus.Failure:
-            //    default:
-            //        ModelState.AddModelError("", "Invalid login attempt.");
-            //        return View(model);
-            //}
+        private void resetRequest()
+        {
+            var authCookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null && !authTicket.Expired)
+                {
+                    var roles = authTicket.UserData.Split(',');
+                    System.Web.HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(new FormsIdentity(authTicket), roles);
+                }
             }
-
+        }
 
         //
         // GET: /Account/VerifyCode
@@ -179,7 +177,7 @@ namespace BA_Project.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

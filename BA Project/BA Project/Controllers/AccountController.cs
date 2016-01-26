@@ -11,9 +11,11 @@ using Microsoft.Owin.Security;
 using BA_Project.Models;
 using DatabaseModel;
 using System.Web.Security;
+using System.Windows.Forms;
 
 namespace BA_Project.Controllers
 {
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -84,16 +86,16 @@ namespace BA_Project.Controllers
                 if (user.CheckLogin(user.Login, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.Login, user.RememberMe);
-                    resetRequest();
+                    HttpCookie cookie = new HttpCookie("user", user.Login);
+                    Response.Cookies.Add(cookie);
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                  MessageBox.Show("Invalid username or password. Please try again.");
+                }
 
-            }
-            else if (!ModelState.IsValid)
-            {
-                return View(user);
-            }
-           
+            }        
             return View(user);
 
         }

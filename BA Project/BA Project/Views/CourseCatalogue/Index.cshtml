@@ -1,5 +1,59 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Course Catalogue";
 }
 
 <h1>@ViewBag.Title</h1>
+<br/>
+<br/>
+<table align="center" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>English Literature</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+            <td>02/04/2016</td>
+            <td>Available</td>
+
+        </tr>
+        <tr>
+            <td>Advanced Physics</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+            <td>02/04/2016</td>
+            <td>Not Available</td>
+        </tr>
+        <tr>
+            <td>Mathematics</td>
+            <td>01/02/2016</td>
+            <td>02/04/2016</td>
+            <td>Available</td>
+        </tr>
+
+        <tr>
+            <td>Chemistry</td>
+            <td>02/01/2016</td>
+            <td>15/03/2016</td>
+            <td>Available</td>
+        </tr>
+        <tr>
+            <td>Biology</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+            <td>Not Available</td>
+        </tr>
+        <tr>
+            <td>Advanced Mathematics</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+            <td>02/05/2016</td>
+            <td>Not Available</td>
+        </tr>
+    </tbody>
+</table>
+

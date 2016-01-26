@@ -34,7 +34,8 @@ namespace BA_Project
    
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/course.css",          
+                "~/Content/profile.css",
+                "~/Content/CourseCatalogue.css",
                 "~/Content/site.css"));
     }
   }

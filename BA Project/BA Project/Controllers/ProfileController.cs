@@ -12,31 +12,41 @@ namespace BA_Project.Controllers
 {
   public class ProfileController : Controller
   {
+    public user user;
+
+    public ProfileController()
+    {
+      if (user == null)
+      {
+        user= new user();
+      }
+    }
+
     // GET: Profile
     public ActionResult Index()
     {
       string cookie = HttpContext.Request.Cookies["user"].Value;
-      user user = new user();
       using (var context = new BAProjectEntities())
       {
         user = context.users.FirstOrDefault(x=>x.username.Equals(cookie));
       }
       return View(user);
     }
+
     public void UpdateData(string desc, string addressline1, string addressline2, string postcode, string phone, string email, string city)
     {
       try
       {
         using (var context = new BAProjectEntities())
         {
-          user user = context.users.FirstOrDefault(u => u.users_id.Equals(1));//userid));
-          user.description = desc;
-          user.email = email;
-          user.address_city = city;
-          user.address_firstline = addressline1;
-          user.address_secondline = addressline2;
-          user.postcode = postcode;
-          user.phone_number = phone;
+          user databaseUser = context.users.FirstOrDefault(u => u.username.Equals(user.username));
+          databaseUser.description = desc;
+          databaseUser.email = email;
+          databaseUser.address_city = city;
+          databaseUser.address_firstline = addressline1;
+          databaseUser.address_secondline = addressline2;
+          databaseUser.postcode = postcode;
+          databaseUser.phone_number = phone;
 
           context.SaveChanges();
         }

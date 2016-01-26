@@ -16,6 +16,10 @@ namespace BA_Project.Controllers
             return View();
         }
 
+        public ActionResult IndividualCourse()
+        {
+            return View();
+        }
         
     }
 }

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "IndividualCourse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/IndividualCourse.css")
+<div>
+
+    <h2>Course Title</h2>
+    <h4>Course Outline</h4>
+
+    <div class="courseOutline">
+        <p>
+            Here there will be information about the course<br />
+            information<br />
+            information<br />
+            information<br />
+            information<br />
+
+        </p>
+    </div>
+    <div class="otherInformation">
+        <p id="otherInformationPara">
+            Lecturer: NAME<br />
+            Start Date: DATE<br />
+            End Date: DATE <br />
+            Cost: COST <br />
+            <input type="checkbox" /> Waiting List*<br />
+            *To be put on a waiting list if course if full
+        </p>
+    </div>
+        <ul>
+        <li >Register</li>
+    </ul>
+    <button class="registerButton"> Register</button>
+
+</div>

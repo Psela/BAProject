@@ -43,13 +43,13 @@ border-radius:10px;
 
 #Calendar {
      /*background-color:olive;*/
-     border:2px groove black;
+     /*border:2px groove black;*/
      position:absolute;
      /*float:right;*/
        top:300px;
-     right:50px;
-     height:300px;
-    width:300px;
+     right:10px;
+     /*height:500px;*/
+    width:500px;
 /*border-radius:10px;*/
 
 }
@@ -57,4 +57,11 @@ border-radius:10px;
 table{
 
    /* border:1px solid gray;*/
+}
+
+#update {
+
+    position:relative;
+    top:500px;
+    left:400px;
 }

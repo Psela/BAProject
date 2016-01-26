@@ -21,8 +21,13 @@ namespace BA_Project
 
       bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
+                 "~/Scripts/moment.js",
                 "~/Scripts/fullcalendar.js",
-                "~/Scripts/moment.js",
+                "~/Scripts/fullcalendar.min.js",               
+                "~/Scripts/gcal.js",
+                "~/Scripts/jquery-ui-1.11.4.js",
+                "~/Scripts/jquery.validate.unobtrusive.js",
+                "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/moment-with-locales.js",
                 "~/Scripts/respond.js"));
 

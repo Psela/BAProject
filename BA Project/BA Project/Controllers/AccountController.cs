@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using BA_Project.Models;
 using DatabaseModel;
 using System.Web.Security;
+using System.Security.Principal;
 
 namespace BA_Project.Controllers
 {
@@ -413,6 +414,8 @@ namespace BA_Project.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            FormsAuthentication.SignOut();
+            HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
             return RedirectToAction("Index", "Home");
         }
 

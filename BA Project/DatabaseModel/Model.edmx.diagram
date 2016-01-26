@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="BA_ProjectModel.user" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BA_ProjectModel.type_of_users" Width="1.5" PointX="0.75" PointY="1.5" />
         <AssociationConnector Association="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" />
+        <EntityTypeShape EntityType="BA_ProjectModel.cours" Width="1.5" PointX="5.25" PointY="1.375" />
+        <AssociationConnector Association="BA_ProjectModel.FK__courses__lecture__5DCAEF64" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

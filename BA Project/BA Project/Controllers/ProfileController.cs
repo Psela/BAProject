@@ -46,7 +46,7 @@ namespace BA_Project.Controllers
                 }
             }
 
-            Response.Redirect("~/CourseCatalogue/Index");
+            Response.Redirect("~/Profile/Index");
         }
     }
 }

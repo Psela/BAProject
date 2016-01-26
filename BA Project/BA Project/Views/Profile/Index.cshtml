@@ -81,6 +81,9 @@
                 }
             });
 
+
+            //GEt aLL CHILDREN-> textboxes OF the td
+
         });
   </script>
 
@@ -94,34 +97,34 @@
   @using (Html.BeginForm("UpdateData", "Profile"))
   {
     <div id="contact">
-      <table cellspacing="20">
-        <tr> <th colspan="2" style="text-align:center; font-size:larger;" >Contact Details</th></tr>
+      <table cellspacing="20" id="contactDetails">
+        <tr><th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
         <tr>
-          <td>Name:</td>
-          <td><input type="text" name="name" value="@Model.username" /></td>
+          <td>Name: </td>
+          <td><input type="text" name="name" value="@Model.username" placeholder="UserName"/></td>
         </tr>
         <tr>
-          <td>Email:</td>
-          <td><input type="text" name="email" value="@Model.email" /></td>
+          <td>Email: </td>
+          <td><input type="text" name="email" value="@Model.email" placeholder="Email" /></td>
         </tr>
         <tr>
           <td>Address: </td>
-          <td><input type="text" name="addressline1" value="@Model.address_firstline" /></td>
+          <td><input type="text" name="addressline1" value="@Model.address_firstline" placeholder="Address" /></td>
         </tr>
         <tr>
           <td></td>
-          <td><input type="text" name="addressline2" value="@Model.address_secondline" /></td>
+          <td><input type="text" name="addressline2" value="@Model.address_secondline" placeholder="Address2" /></td>
         </tr>
         <tr>
-          <td>City:</td>
-          <td><input type="text" name="city" value="@Model.address_city" /></td>
+          <td>City: </td>
+          <td><input type="text" name="city" value="@Model.address_city" placeholder="City" /></td>
         </tr>
         <tr>
           <td>Postcode: </td>
-          <td><input type="text" name="postcode" value="@Model.postcode" /></td>
+          <td><input type="text" name="postcode" value="@Model.postcode" placeholder="Postcode" /></td>
         </tr>
         <tr>
-          <td>Mobile:</td>
+          <td>Mobile: </td>
           <td><input type="text" name="phone" value="@(0+Model.phone_number)" /></td>
         </tr>
       </table>

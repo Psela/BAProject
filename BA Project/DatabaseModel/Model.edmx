@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BA_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="course_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="outline" Type="varchar" MaxLength="100" />
+          <Property Name="lecturer" Type="bigint" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="finish_date" Type="date" />
+          <Property Name="cost" Type="smallmoney" />
+          <Property Name="available" Type="bit" />
+        </EntityType>
         <EntityType Name="type_of_users">
           <Key>
             <PropertyRef Name="type_of_user_id" />
@@ -29,7 +42,19 @@
           <Property Name="profile_picture" Type="text" />
           <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__users__type_of_u__45F365D3">
+        <Association Name="FK__courses__lecture__5DCAEF64">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="courses" Type="Self.courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="courses">
+              <PropertyRef Name="lecturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__type_of_u__59063A47">
           <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -42,9 +67,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BA_ProjectModelStoreContainer">
+          <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__users__type_of_u__45F365D3" Association="Self.FK__users__type_of_u__45F365D3">
+          <AssociationSet Name="FK__courses__lecture__5DCAEF64" Association="Self.FK__courses__lecture__5DCAEF64">
+            <End Role="users" EntitySet="users" />
+            <End Role="courses" EntitySet="courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__type_of_u__59063A47" Association="Self.FK__users__type_of_u__59063A47">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -70,6 +100,7 @@
           <Property Name="profile_picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="type_of_users" Relationship="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" FromRole="user" ToRole="type_of_users" />
+          <NavigationProperty Name="courses" Relationship="BA_ProjectModel.FK__courses__lecture__5DCAEF64" FromRole="user" ToRole="cours" />
         </EntityType>
         <EntityContainer Name="BAProjectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="users" EntityType="Self.user" />
@@ -77,6 +108,11 @@
           <AssociationSet Name="FK__users__type_of_u__2A4B4B5E" Association="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <EntitySet Name="courses" EntityType="BA_ProjectModel.cours" />
+          <AssociationSet Name="FK__courses__lecture__5DCAEF64" Association="BA_ProjectModel.FK__courses__lecture__5DCAEF64">
+            <End Role="user" EntitySet="users" />
+            <End Role="cours" EntitySet="courses" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="type_of_users">
@@ -96,6 +132,32 @@
             </Principal>
             <Dependent Role="user">
               <PropertyRef Name="type_of_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="cours">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="course_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="outline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lecturer" Type="Int64" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="finish_date" Type="DateTime" Precision="0" />
+          <Property Name="cost" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="available" Type="Boolean" />
+          <NavigationProperty Name="user" Relationship="BA_ProjectModel.FK__courses__lecture__5DCAEF64" FromRole="cours" ToRole="user" />
+        </EntityType>
+        <Association Name="FK__courses__lecture__5DCAEF64">
+          <End Type="BA_ProjectModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="BA_ProjectModel.cours" Role="cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="cours">
+              <PropertyRef Name="lecturer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -128,6 +190,20 @@
               <MappingFragment StoreEntitySet="type_of_users">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="type_of_user_id" ColumnName="type_of_user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="BA_ProjectModel.cours">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="available" ColumnName="available" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="finish_date" ColumnName="finish_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="lecturer" ColumnName="lecturer" />
+                <ScalarProperty Name="outline" ColumnName="outline" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

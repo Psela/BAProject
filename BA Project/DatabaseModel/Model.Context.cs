@@ -27,5 +27,6 @@ namespace DatabaseModel
     
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<type_of_users> type_of_users { get; set; }
+        public virtual DbSet<cours> courses { get; set; }
     }
 }

@@ -5,11 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="082a3c38510e4bb0a2fb7e6fac2d9c66" Name="Diagram1">
-        <EntityTypeShape EntityType="BA_ProjectModel.user" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BA_ProjectModel.type_of_users" Width="1.5" PointX="0.75" PointY="1.5" />
-        <AssociationConnector Association="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" />
-        <EntityTypeShape EntityType="BA_ProjectModel.cours" Width="1.5" PointX="5.25" PointY="1.375" />
-        <AssociationConnector Association="BA_ProjectModel.FK__courses__lecture__5DCAEF64" />
+        <EntityTypeShape EntityType="BA_ProjectModel.cours" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="BA_ProjectModel.grades_database" Width="1.5" PointX="7.5" PointY="1.875" />
+        <EntityTypeShape EntityType="BA_ProjectModel.type_of_users" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="BA_ProjectModel.user" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="BA_ProjectModel.FK__courses__lecture__31B762FC" />
+        <AssociationConnector Association="BA_ProjectModel.FK__grades_da__cours__367C1819" />
+        <AssociationConnector Association="BA_ProjectModel.FK__grades_da__stude__37703C52" />
+        <AssociationConnector Association="BA_ProjectModel.FK__users__type_of_u__2CF2ADDF" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

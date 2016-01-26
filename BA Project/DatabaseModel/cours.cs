@@ -14,15 +14,21 @@ namespace DatabaseModel
     
     public partial class cours
     {
+        public cours()
+        {
+            this.grades_database = new HashSet<grades_database>();
+        }
+    
         public int course_id { get; set; }
         public string name { get; set; }
         public string outline { get; set; }
-        public Nullable<long> lecturer { get; set; }
+        public Nullable<int> lecturer { get; set; }
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> finish_date { get; set; }
         public Nullable<decimal> cost { get; set; }
         public Nullable<bool> available { get; set; }
     
         public virtual user user { get; set; }
+        public virtual ICollection<grades_database> grades_database { get; set; }
     }
 }

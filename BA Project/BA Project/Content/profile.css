@@ -17,9 +17,9 @@
 {
     position:absolute;
     /*float:right;*/
-    right:300px;
+    right:50px;
     height:200px;
-    width:200px;
+    width:400px;
        top:50px;
     /*background-color:blue;*/
 /*box-shadow:10px 10px 5px #808080;*/
@@ -54,11 +54,27 @@ border-radius:10px;
 
 }
 
-table{
 
-   /* border:1px solid gray;*/
+#contactDetails
+{
+    width:100%;
 }
 
+#contactDetails td:first-child
+{
+    width:20%;
+}
+
+#contactDetails tr td:last-child{
+
+    width:80%;
+    /*background-color:red;*/
+}
+
+#contactDetails input
+{
+    width:70%;
+}
 #update {
 
     position:relative;

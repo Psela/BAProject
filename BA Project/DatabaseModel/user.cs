@@ -17,14 +17,15 @@ namespace DatabaseModel
         public user()
         {
             this.courses = new HashSet<cours>();
+            this.grades_database = new HashSet<grades_database>();
         }
     
-        public long users_id { get; set; }
+        public int users_id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
-        public int type_of_user { get; set; }
         public string phone_number { get; set; }
+        public int type_of_user { get; set; }
         public string address_firstline { get; set; }
         public string address_secondline { get; set; }
         public string address_city { get; set; }
@@ -32,7 +33,8 @@ namespace DatabaseModel
         public string profile_picture { get; set; }
         public string description { get; set; }
     
-        public virtual type_of_users type_of_users { get; set; }
         public virtual ICollection<cours> courses { get; set; }
+        public virtual ICollection<grades_database> grades_database { get; set; }
+        public virtual type_of_users type_of_users { get; set; }
     }
 }

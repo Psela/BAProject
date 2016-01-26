@@ -12,6 +12,7 @@ using BA_Project.Models;
 using DatabaseModel;
 using System.Web.Security;
 using System.Windows.Forms;
+using System.Security.Principal;
 
 namespace BA_Project.Controllers
 {
@@ -91,10 +92,10 @@ namespace BA_Project.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
-                {
+            {
                   MessageBox.Show("Invalid username or password. Please try again.");
-                }
-
+            }
+           
             }        
             return View(user);
 
@@ -415,6 +416,8 @@ namespace BA_Project.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            FormsAuthentication.SignOut();
+            HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
             return RedirectToAction("Index", "Home");
         }
 

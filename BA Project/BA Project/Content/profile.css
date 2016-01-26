@@ -55,7 +55,6 @@ border-radius:10px;
 }
 
 
-
 #contactDetails
 {
     width:100%;
@@ -69,9 +68,13 @@ border-radius:10px;
 #contactDetails tr td:last-child{
 
     width:80%;
-    background-color:red;
+    /*background-color:red;*/
 }
 
+#contactDetails input
+{
+    width:70%;
+}
 #update {
 
     position:relative;

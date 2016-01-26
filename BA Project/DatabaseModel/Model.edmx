@@ -29,7 +29,7 @@
           <Property Name="profile_picture" Type="text" />
           <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__users__type_of_u__2A4B4B5E">
+        <Association Name="FK__users__type_of_u__45F365D3">
           <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -44,7 +44,7 @@
         <EntityContainer Name="BA_ProjectModelStoreContainer">
           <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__users__type_of_u__2A4B4B5E" Association="Self.FK__users__type_of_u__2A4B4B5E">
+          <AssociationSet Name="FK__users__type_of_u__45F365D3" Association="Self.FK__users__type_of_u__45F365D3">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>

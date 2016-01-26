@@ -43,9 +43,9 @@ namespace BA_Project.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -89,13 +89,13 @@ namespace BA_Project.Controllers
 	            {
 		         FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                  return RedirectToAction("Index", "Home");
-	            }
-
             }
+
+        }
             return View(model);
 
             
-
+                    
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             //switch (result)
@@ -111,7 +111,7 @@ namespace BA_Project.Controllers
             //        ModelState.AddModelError("", "Invalid login attempt.");
             //        return View(model);
             //}
-        }
+            }
 
 
         //
@@ -179,7 +179,7 @@ namespace BA_Project.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

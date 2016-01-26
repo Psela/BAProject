@@ -10,7 +10,15 @@ namespace BA_Project.Models
 {
     public class LoginModel
     {
-        user user = new user();
+        public user user;
+
+        public LoginModel()
+        {
+            if (user == null)
+            {
+                user = new user();
+            }          
+        }
 
         [Required]
         [Display(Name = "Login")]

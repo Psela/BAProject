@@ -14,6 +14,11 @@ namespace DatabaseModel
     
     public partial class user
     {
+        public user()
+        {
+            this.courses = new HashSet<cours>();
+        }
+    
         public long users_id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -28,5 +33,6 @@ namespace DatabaseModel
         public string description { get; set; }
     
         public virtual type_of_users type_of_users { get; set; }
+        public virtual ICollection<cours> courses { get; set; }
     }
 }

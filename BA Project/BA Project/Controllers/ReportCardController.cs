@@ -13,5 +13,12 @@ namespace BA_Project.Controllers
         {
             return View();
         }
+
+        //view for the lectureer
+        public ActionResult LecturerView()
+        {
+            return View();
+           
+        }
     }
 }

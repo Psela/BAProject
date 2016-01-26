@@ -15,6 +15,8 @@
             var y = date.getFullYear();
             //$('.calendarholder').fullCalendar();
             //$('#Calendar').fullCalendar('render');
+            //alert(d);
+
 
 
             $('#Calendar').fullCalendar({
@@ -35,30 +37,53 @@
                 },
                 minTime: 7,
                 maxTime: 22,
-                editable: true,
+                allDay: true,
+                //editable: true,
                 droppable: false,
                 slotMinutes: 15,
                 disableResizing: false,
                 events: [
                    {
                        "title": "Calendar Test",
-                       "start": "2014-06-01 18:30:00",
+                       "start": "2015-01-01 18:30:00",
                        "end": "2014-06-01 19:00:00",
                        "allDay": false
                    },
                    {
                        "title": "Calendar Test 1",
-                       "start": "2014-06-02 18:30:00",
-                       "end": "2014-06-02 19:00:00",
+                       "start": "2015-02-02 18:30:00",
+                       "end": "2015-02-02 19:00:00",
                        "allDay": false
                    },
                    {
                        "title": "Calendar Test 2",
-                       "start": "2014-06-03 18:30:00",
-                       "end": "2014-06-03 19:00:00",
+                       "start": "2015-06-03 18:30:00",
+                       "end": "2015-06-03 19:00:00",
                        "allDay": false
                    }
                 ],
+                dayClick: function (date, jsEvent, view) {
+
+                    alert('Clicked on: ' + date.format());
+
+                    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+                    alert('Current view: ' + view.name);
+
+                    // change the day's background color just for fun
+                    $(this).css('background-color', 'red');
+
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+
+                    alert('Event: ' + calEvent.title);
+                    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                    alert('View: ' + view.name);
+
+                    // change the border color just for fun
+                    $(this).css('border-color', 'red');
+
+                }
             });
 
         });

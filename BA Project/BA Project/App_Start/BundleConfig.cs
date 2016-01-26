@@ -31,10 +31,9 @@ namespace BA_Project
                 "~/Scripts/moment-with-locales.js",
                 "~/Scripts/respond.js"));
 
+   
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/fullcalendar.css",
-                "~/Content/fullcalendar.print.css",
                 "~/Content/course.css",          
                 "~/Content/site.css"));
     }

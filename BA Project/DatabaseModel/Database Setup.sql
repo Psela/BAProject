@@ -1,4 +1,5 @@
-﻿DROP TABLE BA_Project.dbo.courses;
+﻿DROP TABLE BA_Project.dbo.grades_database;
+DROP TABLE BA_Project.dbo.courses;
 DROP TABLE BA_Project.dbo.users;
 DROP TABLE BA_Project.dbo.type_of_users;
 
@@ -9,7 +10,7 @@ CREATE TABLE BA_Project.dbo.type_of_users
 
 CREATE TABLE BA_Project.dbo.users
 (
-	users_id BIGINT PRIMARY KEY,
+	users_id INT PRIMARY KEY,
 	username VARCHAR(100) NOT NULL,
 	password VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
@@ -28,11 +29,19 @@ CREATE TABLE BA_Project.dbo.courses
 	course_id INT PRIMARY KEY,
 	name VARCHAR(100),
 	outline VARCHAR(100),
-	lecturer BIGINT REFERENCES users,
+	lecturer INT REFERENCES users,
 	start_date DATE,
 	finish_date DATE,
 	cost SMALLMONEY,
 	available BIT
+);
+
+CREATE TABLE BA_Project.dbo.grades_database
+(
+	grade_id INT IDENTITY(1,1) PRIMARY KEY,
+	course_id INT REFERENCES courses,
+	student_id INT REFERENCES users,
+	grade CHAR(1)
 );
 
 --Dummy Data
@@ -138,4 +147,25 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	'20170205',
 	£54321.00,
 	0
+);
+
+INSERT INTO BA_Project.dbo.grades_database VALUES(
+	1,
+	2,
+	'A'
+);
+INSERT INTO BA_Project.dbo.grades_database VALUES(
+	3,
+	2,
+	'C'
+);
+INSERT INTO BA_Project.dbo.grades_database VALUES(
+	2,
+	2,
+	'B'
+);
+INSERT INTO BA_Project.dbo.grades_database VALUES(
+	4,
+	2,
+	'A'
 );

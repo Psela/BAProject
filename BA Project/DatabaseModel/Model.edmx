@@ -12,11 +12,20 @@
           <Property Name="course_id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="100" />
           <Property Name="outline" Type="varchar" MaxLength="100" />
-          <Property Name="lecturer" Type="bigint" />
+          <Property Name="lecturer" Type="int" />
           <Property Name="start_date" Type="date" />
           <Property Name="finish_date" Type="date" />
           <Property Name="cost" Type="smallmoney" />
           <Property Name="available" Type="bit" />
+        </EntityType>
+        <EntityType Name="grades_database">
+          <Key>
+            <PropertyRef Name="grade_id" />
+          </Key>
+          <Property Name="grade_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course_id" Type="int" />
+          <Property Name="student_id" Type="int" />
+          <Property Name="grade" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="type_of_users">
           <Key>
@@ -29,7 +38,7 @@
           <Key>
             <PropertyRef Name="users_id" />
           </Key>
-          <Property Name="users_id" Type="bigint" Nullable="false" />
+          <Property Name="users_id" Type="int" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
@@ -42,7 +51,7 @@
           <Property Name="profile_picture" Type="text" />
           <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__courses__lecture__5DCAEF64">
+        <Association Name="FK__courses__lecture__31B762FC">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="courses" Type="Self.courses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -54,7 +63,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__type_of_u__59063A47">
+        <Association Name="FK__grades_da__cours__367C1819">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="grades_database">
+              <PropertyRef Name="course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__grades_da__stude__37703C52">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="grades_database">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__type_of_u__2CF2ADDF">
           <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -68,13 +101,22 @@
         </Association>
         <EntityContainer Name="BA_ProjectModelStoreContainer">
           <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grades_database" EntityType="Self.grades_database" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__courses__lecture__5DCAEF64" Association="Self.FK__courses__lecture__5DCAEF64">
+          <AssociationSet Name="FK__courses__lecture__31B762FC" Association="Self.FK__courses__lecture__31B762FC">
             <End Role="users" EntitySet="users" />
             <End Role="courses" EntitySet="courses" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__type_of_u__59063A47" Association="Self.FK__users__type_of_u__59063A47">
+          <AssociationSet Name="FK__grades_da__cours__367C1819" Association="Self.FK__grades_da__cours__367C1819">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="grades_database" EntitySet="grades_database" />
+          </AssociationSet>
+          <AssociationSet Name="FK__grades_da__stude__37703C52" Association="Self.FK__grades_da__stude__37703C52">
+            <End Role="users" EntitySet="users" />
+            <End Role="grades_database" EntitySet="grades_database" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__type_of_u__2CF2ADDF" Association="Self.FK__users__type_of_u__2CF2ADDF">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -83,58 +125,28 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BA_ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="users_id" />
-          </Key>
-          <Property Name="users_id" Type="Int64" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="type_of_user" Type="Int32" Nullable="false" />
-          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="address_firstline" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="address_secondline" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="address_city" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="postcode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="profile_picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="type_of_users" Relationship="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" FromRole="user" ToRole="type_of_users" />
-          <NavigationProperty Name="courses" Relationship="BA_ProjectModel.FK__courses__lecture__5DCAEF64" FromRole="user" ToRole="cours" />
-        </EntityType>
         <EntityContainer Name="BAProjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="users" EntityType="Self.user" />
-          <EntitySet Name="type_of_users" EntityType="BA_ProjectModel.type_of_users" />
-          <AssociationSet Name="FK__users__type_of_u__2A4B4B5E" Association="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E">
-            <End Role="type_of_users" EntitySet="type_of_users" />
-            <End Role="user" EntitySet="users" />
-          </AssociationSet>
           <EntitySet Name="courses" EntityType="BA_ProjectModel.cours" />
-          <AssociationSet Name="FK__courses__lecture__5DCAEF64" Association="BA_ProjectModel.FK__courses__lecture__5DCAEF64">
+          <EntitySet Name="grades_database" EntityType="BA_ProjectModel.grades_database" />
+          <EntitySet Name="type_of_users" EntityType="BA_ProjectModel.type_of_users" />
+          <EntitySet Name="users" EntityType="BA_ProjectModel.user" />
+          <AssociationSet Name="FK__courses__lecture__31B762FC" Association="BA_ProjectModel.FK__courses__lecture__31B762FC">
             <End Role="user" EntitySet="users" />
             <End Role="cours" EntitySet="courses" />
           </AssociationSet>
+          <AssociationSet Name="FK__grades_da__cours__367C1819" Association="BA_ProjectModel.FK__grades_da__cours__367C1819">
+            <End Role="cours" EntitySet="courses" />
+            <End Role="grades_database" EntitySet="grades_database" />
+          </AssociationSet>
+          <AssociationSet Name="FK__grades_da__stude__37703C52" Association="BA_ProjectModel.FK__grades_da__stude__37703C52">
+            <End Role="user" EntitySet="users" />
+            <End Role="grades_database" EntitySet="grades_database" />
+          </AssociationSet>
+          <AssociationSet Name="FK__users__type_of_u__2CF2ADDF" Association="BA_ProjectModel.FK__users__type_of_u__2CF2ADDF">
+            <End Role="type_of_users" EntitySet="type_of_users" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="type_of_users">
-          <Key>
-            <PropertyRef Name="type_of_user_id" />
-          </Key>
-          <Property Name="type_of_user_id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="users" Relationship="BA_ProjectModel.FK__users__type_of_u__2A4B4B5E" FromRole="type_of_users" ToRole="user" />
-        </EntityType>
-        <Association Name="FK__users__type_of_u__2A4B4B5E">
-          <End Type="BA_ProjectModel.type_of_users" Role="type_of_users" Multiplicity="1" />
-          <End Type="BA_ProjectModel.user" Role="user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="type_of_users">
-              <PropertyRef Name="type_of_user_id" />
-            </Principal>
-            <Dependent Role="user">
-              <PropertyRef Name="type_of_user" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="cours">
           <Key>
             <PropertyRef Name="course_id" />
@@ -142,14 +154,54 @@
           <Property Name="course_id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="outline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="lecturer" Type="Int64" />
+          <Property Name="lecturer" Type="Int32" />
           <Property Name="start_date" Type="DateTime" Precision="0" />
           <Property Name="finish_date" Type="DateTime" Precision="0" />
           <Property Name="cost" Type="Decimal" Precision="10" Scale="4" />
           <Property Name="available" Type="Boolean" />
-          <NavigationProperty Name="user" Relationship="BA_ProjectModel.FK__courses__lecture__5DCAEF64" FromRole="cours" ToRole="user" />
+          <NavigationProperty Name="user" Relationship="BA_ProjectModel.FK__courses__lecture__31B762FC" FromRole="cours" ToRole="user" />
+          <NavigationProperty Name="grades_database" Relationship="BA_ProjectModel.FK__grades_da__cours__367C1819" FromRole="cours" ToRole="grades_database" />
         </EntityType>
-        <Association Name="FK__courses__lecture__5DCAEF64">
+        <EntityType Name="grades_database">
+          <Key>
+            <PropertyRef Name="grade_id" />
+          </Key>
+          <Property Name="grade_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_id" Type="Int32" />
+          <Property Name="student_id" Type="Int32" />
+          <Property Name="grade" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="cours" Relationship="BA_ProjectModel.FK__grades_da__cours__367C1819" FromRole="grades_database" ToRole="cours" />
+          <NavigationProperty Name="user" Relationship="BA_ProjectModel.FK__grades_da__stude__37703C52" FromRole="grades_database" ToRole="user" />
+        </EntityType>
+        <EntityType Name="type_of_users">
+          <Key>
+            <PropertyRef Name="type_of_user_id" />
+          </Key>
+          <Property Name="type_of_user_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="BA_ProjectModel.FK__users__type_of_u__2CF2ADDF" FromRole="type_of_users" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="type_of_user" Type="Int32" Nullable="false" />
+          <Property Name="address_firstline" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address_secondline" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address_city" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="profile_picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="courses" Relationship="BA_ProjectModel.FK__courses__lecture__31B762FC" FromRole="user" ToRole="cours" />
+          <NavigationProperty Name="grades_database" Relationship="BA_ProjectModel.FK__grades_da__stude__37703C52" FromRole="user" ToRole="grades_database" />
+          <NavigationProperty Name="type_of_users" Relationship="BA_ProjectModel.FK__users__type_of_u__2CF2ADDF" FromRole="user" ToRole="type_of_users" />
+        </EntityType>
+        <Association Name="FK__courses__lecture__31B762FC">
           <End Type="BA_ProjectModel.user" Role="user" Multiplicity="0..1" />
           <End Type="BA_ProjectModel.cours" Role="cours" Multiplicity="*" />
           <ReferentialConstraint>
@@ -161,38 +213,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__grades_da__cours__367C1819">
+          <End Type="BA_ProjectModel.cours" Role="cours" Multiplicity="0..1" />
+          <End Type="BA_ProjectModel.grades_database" Role="grades_database" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cours">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="grades_database">
+              <PropertyRef Name="course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__grades_da__stude__37703C52">
+          <End Type="BA_ProjectModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="BA_ProjectModel.grades_database" Role="grades_database" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="grades_database">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__users__type_of_u__2CF2ADDF">
+          <End Type="BA_ProjectModel.type_of_users" Role="type_of_users" Multiplicity="1" />
+          <End Type="BA_ProjectModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_of_users">
+              <PropertyRef Name="type_of_user_id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="type_of_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BA_ProjectModelStoreContainer" CdmEntityContainer="BAProjectEntities">
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="BA_ProjectModel.user">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="profile_picture" ColumnName="profile_picture" />
-                <ScalarProperty Name="postcode" ColumnName="postcode" />
-                <ScalarProperty Name="address_city" ColumnName="address_city" />
-                <ScalarProperty Name="address_secondline" ColumnName="address_secondline" />
-                <ScalarProperty Name="address_firstline" ColumnName="address_firstline" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="users_id" ColumnName="users_id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="type_of_user" ColumnName="type_of_user" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="type_of_users">
-            <EntityTypeMapping TypeName="BA_ProjectModel.type_of_users">
-              <MappingFragment StoreEntitySet="type_of_users">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="type_of_user_id" ColumnName="type_of_user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="courses">
             <EntityTypeMapping TypeName="BA_ProjectModel.cours">
               <MappingFragment StoreEntitySet="courses">
@@ -204,6 +266,42 @@
                 <ScalarProperty Name="outline" ColumnName="outline" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grades_database">
+            <EntityTypeMapping TypeName="BA_ProjectModel.grades_database">
+              <MappingFragment StoreEntitySet="grades_database">
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="grade_id" ColumnName="grade_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_of_users">
+            <EntityTypeMapping TypeName="BA_ProjectModel.type_of_users">
+              <MappingFragment StoreEntitySet="type_of_users">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type_of_user_id" ColumnName="type_of_user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="BA_ProjectModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="profile_picture" ColumnName="profile_picture" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="address_city" ColumnName="address_city" />
+                <ScalarProperty Name="address_secondline" ColumnName="address_secondline" />
+                <ScalarProperty Name="address_firstline" ColumnName="address_firstline" />
+                <ScalarProperty Name="type_of_user" ColumnName="type_of_user" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

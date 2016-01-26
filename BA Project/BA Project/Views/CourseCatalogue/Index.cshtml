@@ -1,59 +1,51 @@
-﻿@{
+﻿@model List<DatabaseModel.cours>
+@{
     ViewBag.Title = "Course Catalogue";
 }
 
 <h1>@ViewBag.Title</h1>
-<br/>
-<br/>
+<br />
+<br />
 <table align="center" class="table table-hover">
     <thead>
+
         <tr>
             <th>Course Name</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Availability</th>
         </tr>
+
+
     </thead>
     <tbody>
-        <tr>
+        @foreach (DatabaseModel.cours course in Model)
+        {
+            <tr>
+                @{DateTime startDate = DateTime.Parse(@course.start_date.ToString());
+                  DateTime finishDate = DateTime.Parse(course.finish_date.ToString()); }
 
-            <td>English Literature</td>
-            <td>@DateTime.Now.ToShortDateString()</td>
-            <td>02/04/2016</td>
-            <td>Available</td>
+                <td><a href="~/CourseCatalogue/IndividualCourse/@course.course_id" title="@course.name"> @course.name</a>@*@Html.ActionLink(@course.name,"IndividualCourse","CourseCatalogue")*@</td>
 
-        </tr>
-        <tr>
-            <td>Advanced Physics</td>
-            <td>@DateTime.Now.ToShortDateString()</td>
-            <td>02/04/2016</td>
-            <td>Not Available</td>
-        </tr>
-        <tr>
-            <td>Mathematics</td>
-            <td>01/02/2016</td>
-            <td>02/04/2016</td>
-            <td>Available</td>
-        </tr>
+                <td>@startDate.Day/@startDate.Month/@startDate.Year    
+                </td>
 
-        <tr>
-            <td>Chemistry</td>
-            <td>02/01/2016</td>
-            <td>15/03/2016</td>
-            <td>Available</td>
-        </tr>
-        <tr>
-            <td>Biology</td>
-            <td>@DateTime.Now.ToShortDateString()</td>
-            <td>@DateTime.Now.ToShortDateString()</td>
-            <td>Not Available</td>
-        </tr>
-        <tr>
-            <td>Advanced Mathematics</td>
-            <td>@DateTime.Now.ToShortDateString()</td>
-            <td>02/05/2016</td>
-            <td>Not Available</td>
-        </tr>
+                <td>
+                    @finishDate.Day/@finishDate.Month/@finishDate.Year
+                </td>
+
+                @if (course.available == true)
+                {
+                    <td>Available</td>
+                }
+                else
+                {
+                    <td>Currently Unavailable</td>
+                }
+
+
+
+            </tr>
+        }
     </tbody>
 </table>
-

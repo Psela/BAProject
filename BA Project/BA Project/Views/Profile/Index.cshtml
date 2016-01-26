@@ -1,19 +1,7 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-@Model
-@*BAProjectEntities*@
-
-@{
-    ViewBag.Title = "Index";
-}
-
+﻿@model DatabaseModel.user
 @section scripts
     {
-    <script type="text/javascript">
+  <script type="text/javascript">
         $(document).ready(function () {
             var date = new Date();
             var d = date.getDate();
@@ -94,63 +82,63 @@
             });
 
         });
-    </script>
+  </script>
 
 }
 
 <div id="relativelayout">
-    <div id="profilepicture">
-        <img src="~/Images/placeholderimage.png" height="200"
-             width="200" />
-    </div>
-    @using (Html.BeginForm("UpdateData", "Profile"))
-    {
-        <div id="contact">
-            <table cellspacing="20">
-                <tr> <th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" name="name" /></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" name="email" /></td>
-                </tr>
-                <tr>
-                    <td>Address:</td>
-                    <td><input type="text" name="addressline1" /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="text" name="addressline2" /></td>
-                </tr>
-                <tr>
-                    <td>City:</td>
-                    <td><input type="text" name="city" /></td>
-                </tr>
-                <tr>
-                    <td>Postcode:</td>
-                    <td><input type="text" name="postcode" /></td>
-                </tr>
-                <tr>
-                    <td>Mobile:</td>
-                    <td><input type="text" name="phone" /></td>
-                </tr>
-            </table>
+  <div id="profilepicture">
+    <img src="@Model.profile_picture" height="200"
+         width="200" />
+  </div>
+  @using (Html.BeginForm("UpdateData", "Profile"))
+  {
+    <div id="contact">
+      <table cellspacing="20">
+        <tr> <th colspan="2" style="text-align:center; font-size:larger;" >Contact Details</th></tr>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="name" value="@Model.username" /></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="text" name="email" value="@Model.email" /></td>
+        </tr>
+        <tr>
+          <td>Address: </td>
+          <td><input type="text" name="addressline1" value="@Model.address_firstline" /></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="text" name="addressline2" value="@Model.address_secondline" /></td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td><input type="text" name="city" value="@Model.address_city" /></td>
+        </tr>
+        <tr>
+          <td>Postcode: </td>
+          <td><input type="text" name="postcode" value="@Model.postcode" /></td>
+        </tr>
+        <tr>
+          <td>Mobile:</td>
+          <td><input type="text" name="phone" value="@(0+Model.phone_number)" /></td>
+        </tr>
+      </table>
 
-        </div>
-        <div id="description">
-            <table>
-                <tr><th colspan="2" style="text-align:center; font-size:larger;">Description</th></tr>
-                <tr>
-                    <td>
-                        <textarea rows="10" cols="50" name="desc"></textarea>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <input type="submit" value="Update" id="update" />
-    }
-    <div id="Calendar"></div>
+    </div>
+    <div id="description">
+      <table>
+        <tr><th colspan="2" style="text-align:center; font-size:larger;">Description</th></tr>
+        <tr>
+          <td>
+            <textarea rows="10" cols="50" name="desc">@Model.description</textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <input type="submit" value="Update" id="update" />
+  }
+  <div id="Calendar"></div>
 </div>
 

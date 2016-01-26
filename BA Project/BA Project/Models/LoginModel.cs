@@ -3,23 +3,16 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Windows.Forms;
 
 namespace BA_Project.Models
 {
     public class LoginModel
     {
-        public user user;
-
-        public LoginModel()
-        {
-            if (user == null)
-            {
-                user = new user();
-            }          
-        }
-
         [Required]
         [Display(Name = "Login")]
         public string Login { get; set; }
@@ -32,19 +25,7 @@ namespace BA_Project.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
 
-        //public bool loginValidated { get; set; }
-
-        //public void setLogin(bool validation)
-        //{
-        //    loginValidated = validation;
-        //}
-
-        //public bool GetLoginValue()
-        //{
-        //    return loginValidated;
-        //}
-
-        public bool  CheckLogin(string _username, string _password)
+    public bool CheckLogin(string _username, string _password)
         {
             try
             {
@@ -52,36 +33,38 @@ namespace BA_Project.Models
                 using (var context = new BAProjectEntities())
                 {
                     var existingUser = context.users.FirstOrDefault(x => x.username.Contains(_username));
-
+          if (existingUser != null)
+          {
                     if (existingUser.password.Equals(_password))
                     {
-
-                        //setLogin(true);
-                        //Assigns corresponding information for the logged in user
-                        user = existingUser;
-
                         return true;
                     }
-                    else
-                    {
-                        return false;
+          }
+
                     }
                 }
-                //return result;
+      catch (Exception ex)
+      {
+        if (ex is EntityException || ex is NullReferenceException)
+        {
+          MessageBox.Show("Couldn't connect to the database. Please try again later.");
             }
-            catch (Exception e)
+        else
             {
                 throw;
             }
+      }
+      return false;
         }
 
         public SignInStatus CheckLogin(LoginModel model)
         {
+      var result = new SignInStatus();
             try
             {
-                var result = new SignInStatus();
                 using (var context = new BAProjectEntities())
                 {
+          user user = new user();
                     var existingUserName = context.users.FirstOrDefault(x => x.username.Equals(model.Login));
                     if (existingUserName == null)
                     {
@@ -105,14 +88,21 @@ namespace BA_Project.Models
                     {
                         result = SignInStatus.Failure;
                     }
+        }
+
                 }
-                return result;
+      catch (Exception ex)
+      {
+        if (ex is EntityException || ex is NullReferenceException)
+        {
+          MessageBox.Show("Couldn't connect to the database. Please try again later.");
             }
-            catch (Exception e)
+        else
             {
                 throw;
             }
-
+      }
+      return result;
         }
     }
 }

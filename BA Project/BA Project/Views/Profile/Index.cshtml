@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Model
+@*BAProjectEntities*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            //$('.calendarholder').fullCalendar();
+            //$('#Calendar').fullCalendar('render');
+            //alert(d);
+
+
+
+            $('#Calendar').fullCalendar({
+                editable: true,
+                firstDay: 1,
+                year: y,
+                month: m,
+                date: d,
+                header: {
+                    left: 'title',
+                    right: 'prev,next today,agendaDay,agendaWeek,month'
+                },
+                defaultView: 'agendaWeek',
+                columnFormat: {
+                    month: 'ddd',
+                    week: 'ddd d/M',
+                    day: 'dddd d/M'
+                },
+                minTime: 7,
+                maxTime: 22,
+                allDay: true,
+                //editable: true,
+                droppable: false,
+                slotMinutes: 15,
+                disableResizing: false,
+                events: [
+                   {
+                       "title": "Calendar Test",
+                       "start": "2015-01-01 18:30:00",
+                       "end": "2014-06-01 19:00:00",
+                       "allDay": false
+                   },
+                   {
+                       "title": "Calendar Test 1",
+                       "start": "2015-02-02 18:30:00",
+                       "end": "2015-02-02 19:00:00",
+                       "allDay": false
+                   },
+                   {
+                       "title": "Calendar Test 2",
+                       "start": "2015-06-03 18:30:00",
+                       "end": "2015-06-03 19:00:00",
+                       "allDay": false
+                   }
+                ],
+                dayClick: function (date, jsEvent, view) {
+
+                    alert('Clicked on: ' + date.format());
+
+                    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+                    alert('Current view: ' + view.name);
+
+                    // change the day's background color just for fun
+                    $(this).css('background-color', 'red');
+
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+
+                    alert('Event: ' + calEvent.title);
+                    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                    alert('View: ' + view.name);
+
+                    // change the border color just for fun
+                    $(this).css('border-color', 'red');
+
+                }
+            });
+
+        });
+    </script>
+
+}
+
+<div id="relativelayout">
+    <div id="profilepicture">
+        <img src="~/Images/placeholderimage.png" height="200"
+             width="200" />
+    </div>
+    @using (Html.BeginForm("UpdateData", "CourseCatalogue"))
+    {
+        <div id="contact">
+            <table cellspacing="20">
+                <tr> <th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name" /></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" /></td>
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" name="addressline1" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" name="addressline2" /></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" name="city" /></td>
+                </tr>
+                <tr>
+                    <td>Postcode:</td>
+                    <td><input type="text" name="postcode" /></td>
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td><input type="text" name="phone" /></td>
+                </tr>
+            </table>
+
+        </div>
+        <div id="description">
+            <table>
+                <tr><th colspan="2" style="text-align:center; font-size:larger;">Description</th></tr>
+                <tr>
+                    <td>
+                        <textarea rows="10" cols="50" name="desc"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="submit" value="Update" id="update" />
+    }
+    <div id="Calendar"></div>
+</div>
+

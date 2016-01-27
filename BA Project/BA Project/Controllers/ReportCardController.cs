@@ -32,11 +32,16 @@ namespace BA_Project.Controllers
       return View(usernamesAndGrades);
     }
 
-        //view for student report card
-        public ActionResult StudentView()
-        {
-            return View();
-        }
+    public void UpdateGrade(string grade)
+    {
+
+    }
+
+    //view for student report card
+    public ActionResult StudentView()
+    {
+      return View();
+    }
 
   }
 }

@@ -18,19 +18,20 @@
     </tr>
   </thead>
   <tbody>
-    @foreach (var item in Model)
+    @using (Html.BeginForm("UpdateGrade", "ReportCard"))
     {
+      foreach (var item in Model)
+      {
+        <tr>
+          <td>@item.Key</td>
+          <td><input type="text" value="@item.Value" name="grade" /></td>
+        </tr>
+      }
       <tr>
-        <td>@item.Key</td>
-        <td><input type="text" value="@item.Value" /></td>
+        <td colspan="2" align="center">
+          <input type="submit" value="Update" id="update">
+        </td>
       </tr>
     }
-    <tr>
-      <td colspan="2" align="center">
-        <button name="Submit">Update</button>
-      </td>
-    </tr>
   </tbody>
 </table>
-
-

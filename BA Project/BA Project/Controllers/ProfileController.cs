@@ -30,7 +30,7 @@ namespace BA_Project.Controllers
       return user;
     }
 
-    public void UpdateData(string desc, string addressline1, string addressline2, string postcode, string phone, string email, string city, string name)
+    public void UpdateData(string desc, string addressline1, string addressline2, string postcode, string phone, string email, string city, string name, string office)
     {
       user user = GetUser();
       if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(desc) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(addressline1) || string.IsNullOrEmpty(postcode) || string.IsNullOrEmpty(phone))
@@ -53,6 +53,7 @@ namespace BA_Project.Controllers
             databaseUser.address_secondline = addressline2;
             databaseUser.postcode = postcode;
             databaseUser.phone_number = phone;
+            databaseUser.office = office;
 
             context.SaveChanges();
           }

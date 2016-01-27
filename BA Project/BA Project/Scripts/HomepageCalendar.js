@@ -14,7 +14,7 @@
             left: 'title',
             right: 'prev,next today,agendaDay,agendaWeek,month'
         },
-        defaultView: 'agendaWeek',
+        //defaultView: 'agendaWeek',
         columnFormat: {
             month: 'ddd',
             week: 'ddd d/M',

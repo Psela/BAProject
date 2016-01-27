@@ -14,11 +14,18 @@ namespace BA_Project.Controllers
             return View();
         }
 
-        //view for the lectureer
+        //view for the lecturer-> report card
         public ActionResult LecturerView()
         {
             return View();
            
         }
+
+        //view for student report card
+        public ActionResult StudentView()
+        {
+            return View();
+        }
+
     }
 }

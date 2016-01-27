@@ -25,6 +25,7 @@ namespace BA_Project
                 "~/Scripts/fullcalendar.js",
                 "~/Scripts/fullcalendar.min.js",               
                 "~/Scripts/gcal.js",
+                "~/Scripts/HomepageCalendar.js",
                 "~/Scripts/jquery-ui-1.11.4.js",
                 "~/Scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/jquery.unobtrusive-ajax.js",

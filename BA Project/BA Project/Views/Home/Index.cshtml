@@ -72,26 +72,29 @@
 <div class="row">
     <div class="col-md-4">
         <h2>News</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#" id="general">General</a></li>
+            <li><a href="#" id="admission">Admission</a></li>
+            <li><a href="#" id="staff">Staff</a></li>
+            <li><a href="#" id="excursion">Excursion</a></li>
+        </ul>
+        <br>
+        <p id="changeNews"><strong>How British hostility to the EU contrasts with opposition elsewhere in Europe</strong><br/><br/>
+           The UK’s referendum on EU membership may well be one of the main stories of 2016, with the British Prime Minister,
+         David Cameron, recently suggesting that it could be held as early as the summer.
+         Montserrat Guibernau writes on how we can conceive of Euroscepticism in both the UK and other EU countries.</p>
     </div>
     <div class="col-md-4">
 
     </div>
     <div class="col-md-4">
         <h2>Calendar</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <div id="Calendar2">
+
+        </div>
+
     </div>
 </div>
+@Scripts.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/Newsblog.js")
+@*@Scripts.Render("~/Scripts/HomepageCalendar.js")*@

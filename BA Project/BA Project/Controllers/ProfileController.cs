@@ -65,5 +65,12 @@ namespace BA_Project.Controllers
 
       Response.Redirect("~/Profile/Index");
     }
+
+    //profile for Lecturers
+    public ActionResult LecturerProfile() {
+
+        return View();
+    
+    }
   }
 }

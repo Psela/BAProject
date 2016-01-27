@@ -355,6 +355,7 @@
     <Content Include="Views\Profile\LecturerProfile.cshtml" />
     <Content Include="Views\Shared\_DropDownMenu.cshtml" />
     <Content Include="Views\CourseCatalogue\courseInfo.cshtml" />
+    <Content Include="Views\CourseCatalogue\confirmationPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

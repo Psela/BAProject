@@ -43,7 +43,8 @@ CREATE TABLE BA_Project.dbo.grades_database
 	grade_id INT IDENTITY(1,1) PRIMARY KEY,
 	course_id INT REFERENCES courses,
 	student_id INT REFERENCES users,
-	grade CHAR(1)
+	grade CHAR(1),
+	history BIT
 );
 
 --Dummy Data
@@ -162,25 +163,30 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 INSERT INTO BA_Project.dbo.grades_database VALUES(
 	1,
 	2,
-	'A'
+	'A',
+	1
 );
 INSERT INTO BA_Project.dbo.grades_database VALUES(
 	3,
 	2,
-	'C'
+	'C',
+	0
 );
 INSERT INTO BA_Project.dbo.grades_database VALUES(
 	2,
 	2,
-	'B'
+	'B',
+	1
 );
 INSERT INTO BA_Project.dbo.grades_database VALUES(
 	4,
 	2,
-	'A'
+	'A',
+	0
 );
 INSERT INTO BA_Project.dbo.grades_database VALUES(
 	1,
 	3,
-	'B'
+	'B',
+	1
 );

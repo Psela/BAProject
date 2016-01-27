@@ -32,6 +32,8 @@ namespace DatabaseModel
         public string postcode { get; set; }
         public string profile_picture { get; set; }
         public string description { get; set; }
+        public string full_name { get; set; }
+        public string office { get; set; }
     
         public virtual ICollection<cours> courses { get; set; }
         public virtual ICollection<grades_database> grades_database { get; set; }

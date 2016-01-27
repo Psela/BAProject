@@ -13,6 +13,7 @@ CREATE TABLE BA_Project.dbo.users
 	users_id INT PRIMARY KEY,
 	username VARCHAR(100) NOT NULL,
 	password VARCHAR(100) NOT NULL,
+	full_name VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
 	phone_number VARCHAR(15) NOT NULL,
 	type_of_user INT NOT NULL REFERENCES type_of_users,
@@ -20,6 +21,7 @@ CREATE TABLE BA_Project.dbo.users
 	address_secondline VARCHAR(60),
 	address_city VARCHAR(60) NOT NULL,
 	postcode VARCHAR(10) NOT NULL,
+	office VARCHAR(20),
 	profile_picture text,
 	description VARCHAR(500)
 );
@@ -55,6 +57,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	1,
 	'MrJohnSmith',
 	'MrJohnSmith',
+	'John Smith',
 	'john@smith.co.uk',
 	02046532879,
 	1,
@@ -62,11 +65,13 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	'',
 	'London',
 	'CE2 4DJ',
+	'Thompson Room',	
 	'http://www.realestatetaxgroup.com/wp-content/uploads/2013/03/empty-profile.png',
 	'Professor at the college'
 );
 INSERT INTO BA_Project.dbo.users VALUES(
 	2,
+	'JaneDoe',
 	'JaneDoe',
 	'JaneDoe',
 	'jane@doe.com',
@@ -76,6 +81,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	'',
 	'London',
 	'CU2 4ME',
+	'',
 	'http://timelinecoverme.com/watermark.php?path=empty&t=2',
 	'Student at the college'
 );
@@ -83,6 +89,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	3,
 	'JoeBloggs', 
 	'JoeBloggs',
+	'Joe Bloggs',
 	'joe@bloggs.com',
 	07543654995,
 	3,
@@ -90,6 +97,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	'',
 	'London',
 	'CE3 6TS',
+	'',
 	'http://www.realestatetaxgroup.com/wp-content/uploads/2013/03/empty-profile.png',
 	'Registrar'
 );
@@ -97,6 +105,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	4,
 	'Admin',
 	'Admin', 
+	'IT Support',
 	'admin@ITSupport.co.uk',
 	02084534659,
 	4,
@@ -104,6 +113,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	'',
 	'London',
 	'CE42 7GB',
+	'The IT Room',
 	'http://www.realestatetaxgroup.com/wp-content/uploads/2013/03/empty-profile.png',
 	'IT support, in charge of everything'
 );

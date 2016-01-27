@@ -18,9 +18,25 @@ namespace BA_Project.Controllers
     //view for the lecturer
     public ActionResult LecturerView(string id)
     {
-      CourseCatalogueController courseCatalogue = new CourseCatalogueController();
-      cours courseToDisplay = courseCatalogue.listOfCourses.FirstOrDefault(x => x.course_id.Equals(id));
-      return View(courseToDisplay);
+      Dictionary<string, string> usernamesAndGrades = new Dictionary<string, string>();
+      using (var context = new BAProjectEntities())
+      {
+        cours course = context.courses.FirstOrDefault(x => x.course_id.ToString() == id);
+        ViewBag.courseName = course.name;
+
+        foreach (var grade in course.grades_database)
+        {
+          usernamesAndGrades.Add(grade.user.username, grade.grade);
+        }
+      }
+      return View(usernamesAndGrades);
     }
+
+        //view for student report card
+        public ActionResult StudentView()
+        {
+            return View();
+        }
+
   }
 }

@@ -1,58 +1,36 @@
-﻿@model DatabaseModel.cours
+﻿@model Dictionary<string, string>
 
-@{
-    ViewBag.Title = "LecturerView";
-}
-
-@section scripts
-
-    {
-    <style type="text/css">
-
-    button {
-        width:100px;
-        height:50px;
-    }
-</style>
-
-    }
-<h2><a>Module 1</a></h2>
-<br/>
-<br/>
-<table align="center" class="table table-hover">
-    <thead>
-
-        <tr>
-            <th>Student Name</th>
-            <th>Grade</th>        
-        </tr>
-        </thead>
-    <tbody>
-      @foreach (var grade in Model.grades_database)
-      {
-        <tr>
-          <td>@grade.user.username</td>
-          <td>@grade.grade</td>
-        </tr>
+@section scripts{
+  <style type="text/css">
+      button {
+        width: 100px;
+        height: 50px;
       }
-        @*<tr>
-            <td>Andrew Abc</td>
-            <td><input type="text" size="1" /></td>
-        </tr>
-        <tr>
-            <td>Andrew Abc</td>
-            <td><input type="text" size="1" /></td>
-        </tr>
-        <tr>
-            <td>Andrew Abc</td>
-            <td><input type="text" size="1" /></td>
-        </tr>
-     <tr>
-         <td colspan="2" align="center">
-             <button name="Submit">Submit</button>
-         </td>
-     </tr>
-    </tbody>
+  </style>
+}
+<h2><a>@ViewBag.courseName</a></h2>
+
+<table align="center" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>@item.Key</td>
+        <td><input type="text" value="@item.Value" /></td>
+      </tr>
+    }
+    <tr>
+      <td colspan="2" align="center">
+        <button name="Submit">Update</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 

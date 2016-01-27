@@ -1,0 +1,38 @@
+﻿body {
+    
+}
+
+h2{
+    text-decoration:underline;
+}
+
+.courseOutline{
+    margin-top: 30px;
+    border: solid 2px #0066CC;
+    border-radius: 10px;
+    width:70%;
+    padding: 10px;
+    background-color:#66B2FF;
+    font-weight:bold;
+}
+
+.otherInformation{
+    margin-top:30px;
+    padding:5px;
+}
+#otherInformationPara {
+    line-height: 180%;
+}
+
+.registerButton{
+    margin-left:40%;
+    margin-top:10px;
+    height: 50px;
+    width: 130px;
+    background-color:#008CFF;
+    border-radius:10px;
+    border-color:grey;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+}

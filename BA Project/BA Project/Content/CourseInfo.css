@@ -5,10 +5,22 @@
 }
 
 #tableInfo{
-    border-radius: 10px 10px;
+      border-radius:10px;
+    border:3px solid #DDDDDD;
+
 }
 
 #buttonrow
 {
     float:right;
+}
+
+#tableInfo th
+{
+    text-align:center;
+}
+
+#tableInfo td
+{
+    text-align:center;
 }

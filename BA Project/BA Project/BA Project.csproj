@@ -357,6 +357,7 @@
     <Content Include="Views\Shared\_DropDownMenu.cshtml" />
     <Content Include="Views\CourseCatalogue\courseInfo.cshtml" />
     <Content Include="Views\CourseCatalogue\confirmationPage.cshtml" />
+    <Content Include="Views\CourseCatalogue\courseHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

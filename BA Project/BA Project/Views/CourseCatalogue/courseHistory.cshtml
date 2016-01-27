@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "courseHistory";
+}
+
+<h2 id="courseInfotitle">Course History</h2>
+<br />
+<br />
+<table id="tableInfo" class="table table-bordered table-hover" align="center">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Grade</th>
+            <th>Finished Date</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" name="courseName" /></td>
+            <td><input type="text" name="grade"/></td>
+            <td><input type="text" name="endDate" /></td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+@Styles.Render("~/Content/CourseInfo.css")

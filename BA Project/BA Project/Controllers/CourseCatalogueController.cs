@@ -43,6 +43,10 @@ namespace BA_Project.Controllers
         {
             return View();
         }
+        public ActionResult courseHistory()
+        {
+            return View();
+        }
         public ActionResult confirmationPage()
         {
             return View();

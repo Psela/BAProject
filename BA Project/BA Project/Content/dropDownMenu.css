@@ -16,6 +16,7 @@
 .reportCard:hover .dropDownDiv{
     display:block;
     box-shadow: 3px 3px 2px #B8B8B8;
+    z-index:3;
 }
 
 .dropDownContainer{
@@ -25,3 +26,5 @@
 .dropDownOptions:hover{
     /*background:#DDDDDD;*/
 }
+
+

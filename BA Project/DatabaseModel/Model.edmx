@@ -51,7 +51,7 @@
           <Property Name="profile_picture" Type="text" />
           <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__courses__lecture__31B762FC">
+        <Association Name="FK__courses__lecture__286302EC">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="courses" Type="Self.courses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -63,7 +63,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__grades_da__cours__367C1819">
+        <Association Name="FK__grades_da__cours__2D27B809">
           <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
           <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,7 +75,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__grades_da__stude__37703C52">
+        <Association Name="FK__grades_da__stude__2E1BDC42">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__type_of_u__2CF2ADDF">
+        <Association Name="FK__users__type_of_u__239E4DCF">
           <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -104,19 +104,19 @@
           <EntitySet Name="grades_database" EntityType="Self.grades_database" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__courses__lecture__31B762FC" Association="Self.FK__courses__lecture__31B762FC">
+          <AssociationSet Name="FK__courses__lecture__286302EC" Association="Self.FK__courses__lecture__286302EC">
             <End Role="users" EntitySet="users" />
             <End Role="courses" EntitySet="courses" />
           </AssociationSet>
-          <AssociationSet Name="FK__grades_da__cours__367C1819" Association="Self.FK__grades_da__cours__367C1819">
+          <AssociationSet Name="FK__grades_da__cours__2D27B809" Association="Self.FK__grades_da__cours__2D27B809">
             <End Role="courses" EntitySet="courses" />
             <End Role="grades_database" EntitySet="grades_database" />
           </AssociationSet>
-          <AssociationSet Name="FK__grades_da__stude__37703C52" Association="Self.FK__grades_da__stude__37703C52">
+          <AssociationSet Name="FK__grades_da__stude__2E1BDC42" Association="Self.FK__grades_da__stude__2E1BDC42">
             <End Role="users" EntitySet="users" />
             <End Role="grades_database" EntitySet="grades_database" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__type_of_u__2CF2ADDF" Association="Self.FK__users__type_of_u__2CF2ADDF">
+          <AssociationSet Name="FK__users__type_of_u__239E4DCF" Association="Self.FK__users__type_of_u__239E4DCF">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>

@@ -17,7 +17,7 @@ namespace BA_Project.Controllers
 
     //view for the lecturer
     public ActionResult LecturerView(string id)
-    {     
+    {
       Dictionary<string, string> usernamesAndGrades = new Dictionary<string, string>();
       using (var context = new BAProjectEntities())
       {
@@ -31,5 +31,12 @@ namespace BA_Project.Controllers
       }
       return View(usernamesAndGrades);
     }
+
+        //view for student report card
+        public ActionResult StudentView()
+        {
+            return View();
+        }
+
   }
 }

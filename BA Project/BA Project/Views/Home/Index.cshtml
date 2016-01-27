@@ -66,19 +66,73 @@
 <br/>
 <br/>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" >
         <h2>News</h2>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#" id="general">General</a></li>
-            <li><a href="#" id="admission">Admission</a></li>
-            <li><a href="#" id="staff">Staff</a></li>
-            <li><a href="#" id="excursion">Excursion</a></li>
-        </ul>
-        <br>
-        <p id="changeNews"><strong>How British hostility to the EU contrasts with opposition elsewhere in Europe</strong><br/><br/>
-           The UK’s referendum on EU membership may well be one of the main stories of 2016, with the British Prime Minister,
-         David Cameron, recently suggesting that it could be held as early as the summer.
-         Montserrat Guibernau writes on how we can conceive of Euroscepticism in both the UK and other EU countries.</p>
+        <div id="content">
+          
+            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                <li class="active"><a href="#red" data-toggle="tab">Top Stories</a></li>
+                <li><a href="#orange" data-toggle="tab">Admission</a></li>
+                <li><a href="#yellow" data-toggle="tab">Staff</a></li>
+                <li><a href="#green" data-toggle="tab">General</a></li>
+   
+            </ul>
+            <div id="my-tab-content" class="tab-content">
+                <div class="tab-pane active" id="red">
+                    @*<img src="Images/AdmissionsBanner.png"  id="imgsize" sizes="2"/>*@   
+                   
+                    <h3>Hippie our University is making Head way</h3>              
+                    <p>The Univerity has been ranked as one of the world’s top 
+                    50 most International Universities in today’s (Thursday 14th January 2016)
+                     Times Higher Education list of the most international universities.
+                    It was ranked 45th in the world in the table which examines 
+                    the proportion of international staff, proportion of international students 
+                    and proportion of research papers published with at least one co-author from another country.</p>
+                </div>
+                <div class="tab-pane" id="orange">
+                    <h3>Top grades from Ofsted for University’s Teacher Training Provision</h3>
+                    <p>Teacher training at the University  has been graded as
+                    ‘outstanding’ by Ofsted in its latest inspection report.
+                     The University’s Centre for Professional Education (CPE)
+                    offers qualifications in primary and secondary teaching of which both
+                    were ranked outstanding across the board.
+The courses were scrutinised on the basis of overall effectiveness,
+                    outcomes for trainees, quality of training & leadership and management.
+                     In addition, the University’s provision
+                     for early years and further education (FE) teacher training were ranked as good,
+                     with the exception of leadership within FE which was classed as outstanding.</p>
+                </div>
+                <div class="tab-pane" id="yellow">
+                    <h3>Top grades from Ofsted for University’s Teacher Training Provision</h3>
+                    <p>Teacher training at the University  has been graded as 
+                    ‘outstanding’ by Ofsted in its latest inspection report.
+                     The University’s Centre for Professional Education (CPE) 
+                    offers qualifications in primary and secondary teaching of which both 
+                    were ranked outstanding across the board.
+The courses were scrutinised on the basis of overall effectiveness, 
+                    outcomes for trainees, quality of training & leadership and management.
+                     In addition, the University’s provision
+                     for early years and further education (FE) teacher training were ranked as good,
+                     with the exception of leadership within FE which was classed as outstanding.</p>
+                </div>
+                <div class="tab-pane" id="green">
+                    <h3>Coventry should be global model for diabetes care for ethnic minorities</h3>
+                    <p>
+                        Study finds city exhibits more signs of diversity than others worldwide.
+                        <ul>
+                            <li>Diversity in Coventry makes it an ideal model for other developed countries planning diabetes care</li>
+
+                            <li> Study reveals that one in 10 Coventry residents is from an ethnic minority, but one in three residents with diabetes is an ethnic minority</li>
+
+                            <li>Study also highlights food and language as the most common barriers to providing diabetes care for ethnic minorities</li>
+
+                            <li>Cities across the developed world should look to Coventry when they plan diabetes services for ethnic minorities.</li>
+
+                        </ul>
+                    </p>    </div>
+         
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
 
@@ -90,8 +144,8 @@
         </div>
 
     </div>
-</div>
-@Scripts.Render("~/Content/bootstrap.css")
-@Scripts.Render("~/Scripts/Newsblog.js")
-@Scripts.Render("~/Content/Homepage.css")
-@*@Scripts.Render("~/Scripts/HomepageCalendar.js")*@
+</div>    
+    @Scripts.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/Scripts/Newsblog.js")
+    @Scripts.Render("~/Content/Homepage.css")
+    @*@Scripts.Render("~/Scripts/HomepageCalendar.js")*@

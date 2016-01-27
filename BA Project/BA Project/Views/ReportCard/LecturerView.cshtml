@@ -2,7 +2,18 @@
     ViewBag.Title = "LecturerView";
 }
 
-@*<h2>LecturerView</h2>*@
+@section scripts
+
+    {
+    <style type="text/css">
+
+    button {
+        width:100px;
+        height:50px;
+    }
+</style>
+
+    }
 <h2><a>Module 1</a></h2>
 <br/>
 <br/>
@@ -17,16 +28,22 @@
     <tbody>
         <tr>
             <td>Andrew Abc</td>
-            <td>A</td>
+            <td><input type="text" size="1" /></td>
         </tr>
         <tr>
             <td>Andrew Abc</td>
-            <td>A</td>
+            <td><input type="text" size="1" /></td>
         </tr>
         <tr>
             <td>Andrew Abc</td>
-            <td>A</td>
+            <td><input type="text" size="1" /></td>
         </tr>
+     <tr>
+         <td colspan="2" align="center">
+             <button name="Submit">Submit</button>
+         </td>
+     </tr>
     </tbody>
 </table>
+
 

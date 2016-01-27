@@ -12,12 +12,19 @@
         <tr><th colspan="2" style="text-align:center; font-size:larger;">Contact Details</th></tr>
         <tr>
           <td>Name: </td>
-          <td><input type="text" name="fullname" value="@Model.full_name" placeholder="FullName"/></td>
+          <td><input type="text" name="fullname" value="@Model.full_name" placeholder="FullName" /></td>
         </tr>
         <tr>
           <td>Email: </td>
           <td><input type="text" name="email" value="@Model.email" placeholder="Email" /></td>
         </tr>
+        @if (Model.type_of_user != 2)
+        {
+          <tr>
+            <td>Office: </td>
+            <td><input type="text" name="office" value="@Model.office" /></td>
+          </tr>
+        }
         <tr>
           <td>Address: </td>
           <td><input type="text" name="addressline1" value="@Model.address_firstline" placeholder="Address" /></td>

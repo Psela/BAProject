@@ -26,6 +26,7 @@
           <Property Name="course_id" Type="int" />
           <Property Name="student_id" Type="int" />
           <Property Name="grade" Type="char" MaxLength="1" />
+          <Property Name="history" Type="bit" />
         </EntityType>
         <EntityType Name="type_of_users">
           <Key>
@@ -53,7 +54,7 @@
           <Property Name="profile_picture" Type="text" />
           <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__courses__lecture__57DD0BE4">
+        <Association Name="FK__courses__lecture__373B3228">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="courses" Type="Self.courses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -65,7 +66,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__grades_da__cours__5CA1C101">
+        <Association Name="FK__grades_da__cours__3BFFE745">
           <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
           <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
           <ReferentialConstraint>
@@ -77,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__grades_da__stude__5D95E53A">
+        <Association Name="FK__grades_da__stude__3CF40B7E">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__type_of_u__531856C7">
+        <Association Name="FK__users__type_of_u__32767D0B">
           <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -106,19 +107,19 @@
           <EntitySet Name="grades_database" EntityType="Self.grades_database" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__courses__lecture__57DD0BE4" Association="Self.FK__courses__lecture__57DD0BE4">
+          <AssociationSet Name="FK__courses__lecture__373B3228" Association="Self.FK__courses__lecture__373B3228">
             <End Role="users" EntitySet="users" />
             <End Role="courses" EntitySet="courses" />
           </AssociationSet>
-          <AssociationSet Name="FK__grades_da__cours__5CA1C101" Association="Self.FK__grades_da__cours__5CA1C101">
+          <AssociationSet Name="FK__grades_da__cours__3BFFE745" Association="Self.FK__grades_da__cours__3BFFE745">
             <End Role="courses" EntitySet="courses" />
             <End Role="grades_database" EntitySet="grades_database" />
           </AssociationSet>
-          <AssociationSet Name="FK__grades_da__stude__5D95E53A" Association="Self.FK__grades_da__stude__5D95E53A">
+          <AssociationSet Name="FK__grades_da__stude__3CF40B7E" Association="Self.FK__grades_da__stude__3CF40B7E">
             <End Role="users" EntitySet="users" />
             <End Role="grades_database" EntitySet="grades_database" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__type_of_u__531856C7" Association="Self.FK__users__type_of_u__531856C7">
+          <AssociationSet Name="FK__users__type_of_u__32767D0B" Association="Self.FK__users__type_of_u__32767D0B">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -174,6 +175,7 @@
           <Property Name="grade" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="cours" Relationship="BA_ProjectModel.FK__grades_da__cours__367C1819" FromRole="grades_database" ToRole="cours" />
           <NavigationProperty Name="user" Relationship="BA_ProjectModel.FK__grades_da__stude__37703C52" FromRole="grades_database" ToRole="user" />
+          <Property Name="history" Type="Boolean" />
         </EntityType>
         <EntityType Name="type_of_users">
           <Key>
@@ -276,6 +278,7 @@
           <EntitySetMapping Name="grades_database">
             <EntityTypeMapping TypeName="BA_ProjectModel.grades_database">
               <MappingFragment StoreEntitySet="grades_database">
+                <ScalarProperty Name="history" ColumnName="history" />
                 <ScalarProperty Name="grade" ColumnName="grade" />
                 <ScalarProperty Name="student_id" ColumnName="student_id" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />

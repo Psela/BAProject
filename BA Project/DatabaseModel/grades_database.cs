@@ -18,6 +18,7 @@ namespace DatabaseModel
         public Nullable<int> course_id { get; set; }
         public Nullable<int> student_id { get; set; }
         public string grade { get; set; }
+        public Nullable<bool> history { get; set; }
     
         public virtual cours cours { get; set; }
         public virtual user user { get; set; }

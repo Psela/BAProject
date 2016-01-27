@@ -11,7 +11,7 @@ namespace BA_Project.Controllers
 {
   public class ReportCardController : Controller
   {
-    public ActionResult Index()
+    public void Index()
     {      
       user user = new user();
       string cookie = HttpContext.Request.Cookies["user"].Value;
@@ -21,11 +21,7 @@ namespace BA_Project.Controllers
       }
       if (user.type_of_user == 2)
       {
-        return StudentView(user.users_id);
-      }
-      else
-      {
-        return LecturerView("1");
+        Response.Redirect("~/ReportCard/StudentView/" + user.users_id);
       }
     }
 
@@ -83,8 +79,9 @@ namespace BA_Project.Controllers
       Dictionary<string, string> grades = new Dictionary<string, string>();
       using (var context = new BAProjectEntities())
       {
-        List<grades_database> gradeDB = context.grades_database.Where<grades_database>(x => x.student_id.Equals(id)).ToList();
-        foreach (var item in gradeDB)
+        List<grades_database> gradeDB = context.grades_database.ToList();
+        List<grades_database> gradeForStudent = gradeDB.FindAll(x => x.student_id.Equals(id)).ToList();
+        foreach (var item in gradeForStudent)
         {
           grades.Add(item.cours.name,item.grade);
         }

@@ -11,12 +11,6 @@ namespace BA_Project.Controllers
 {
   public class ReportCardController : Controller
   {
-    // GET: ReportCard
-    public ActionResult Index()
-    {
-      return View();
-    }
-
     //view for the lecturer
     public ActionResult LecturerView(string id)
     {

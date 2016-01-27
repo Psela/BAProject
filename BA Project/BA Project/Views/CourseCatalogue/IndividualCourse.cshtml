@@ -1,41 +1,36 @@
 ﻿@model DatabaseModel.cours
 @{
-    ViewBag.Title = "IndividualCourse";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "IndividualCourse";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Styles.Render("~/Content/IndividualCourse.css")
 <div>
-    <br />
-    <br />
+  <br />
+  <br />
 
-    <h2> @Model.name</h2>
-    @*<h4> @Model.outline</h4>*@
+  <h2> @Model.name</h2>
 
-    <div class="courseOutline">
-        <p>
-            @Model.outline
+  <div class="courseOutline">
+    <p>@Model.outline</p>
+  </div>
+  <div class="otherInformation">
 
-        </p>
-    </div>
-    <div class="otherInformation">
+    @{DateTime startDate = DateTime.Parse(Model.start_date.ToString());
+    DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());
+    BA_Project.Models.Professor prof = new BA_Project.Models.Professor();
+    DatabaseModel.user profToDisplay = prof.GetProfessorById(Model.course_id.ToString());
+    }
 
-        @{DateTime startDate = DateTime.Parse(Model.start_date.ToString());
-          DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());
-          BA_Project.Models.Professor prof = new BA_Project.Models.Professor();
-          DatabaseModel.user profToDisplay =  prof.GetProfessorById(Model.course_id.ToString());
-          }
-
-
-        <p id="otherInformationPara">
-            Lecturer: @Html.Partial("_lecturerName", profToDisplay)  <br />
-            Start Date: @startDate.Day/@startDate.Month/@startDate.Year<br />
-            End Date: @finishDate.Day/@finishDate.Month/@finishDate.Year <br />
-            Cost: @Model.cost <br />
-            <input type="checkbox" /> Waiting List*<br />
-            *To be put on a waiting list if course if full
-        </p>
-    </div>
-    <button class="registerButton"> Register</button>
+    <p id="otherInformationPara">
+      Lecturer: <a href="~/Profile/LecturerProfile/@profToDisplay.users_id">@profToDisplay.full_name</a><br />
+      Start Date: @startDate.Day/@startDate.Month/@startDate.Year<br />
+      End Date: @finishDate.Day/@finishDate.Month/@finishDate.Year<br />
+      Cost: £@Model.cost <br />
+      <input type="checkbox" /> Waiting List*<br />
+      *To be put on a waiting list if course if full
+    </p>
+  </div>
+  <button class="registerButton"> Register</button>
 
 </div>

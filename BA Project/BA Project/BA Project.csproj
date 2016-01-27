@@ -349,13 +349,9 @@
     <Content Include="Views\CourseCatalogue\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\CourseCatalogue\IndividualCourse.cshtml" />
-    <Content Include="Views\ReportCard\Index.cshtml" />
     <Content Include="Views\ReportCard\LecturerView.cshtml" />
     <Content Include="Views\ReportCard\StudentView.cshtml" />
     <Content Include="Views\Profile\LecturerProfile.cshtml" />
-    <Content Include="Views\CourseCatalogue\_lecturerName.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Views\Shared\_DropDownMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>

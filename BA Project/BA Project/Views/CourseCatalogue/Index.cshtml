@@ -1,51 +1,44 @@
 ﻿@model List<DatabaseModel.cours>
 @{
-    ViewBag.Title = "Course Catalogue";
+  ViewBag.Title = "Course Catalogue";
 }
 
 <h1>@ViewBag.Title</h1>
 <br />
 <br />
 <table align="center" class="table table-hover">
-    <thead>
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Availability</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (DatabaseModel.cours course in Model)
+    {
+      <tr>
+        @{DateTime startDate = DateTime.Parse(@course.start_date.ToString());
+        DateTime finishDate = DateTime.Parse(course.finish_date.ToString()); }
+        <td><a href="~/CourseCatalogue/IndividualCourse/@course.course_id" title="@course.name"> @course.name</a></td>
+        <td>
+          @startDate.Day/@startDate.Month/@startDate.Year
+        </td>
 
-        <tr>
-            <th>Course Name</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Availability</th>
-        </tr>
+        <td>
+          @finishDate.Day/@finishDate.Month/@finishDate.Year
+        </td>
 
-
-    </thead>
-    <tbody>
-        @foreach (DatabaseModel.cours course in Model)
+        @if (course.available == true)
         {
-            <tr>
-                @{DateTime startDate = DateTime.Parse(@course.start_date.ToString());
-                  DateTime finishDate = DateTime.Parse(course.finish_date.ToString()); }
-
-                <td><a href="~/CourseCatalogue/IndividualCourse/@course.course_id" title="@course.name"> @course.name</a>@*@Html.ActionLink(@course.name,"IndividualCourse","CourseCatalogue")*@</td>
-
-                <td>@startDate.Day/@startDate.Month/@startDate.Year    
-                </td>
-
-                <td>
-                    @finishDate.Day/@finishDate.Month/@finishDate.Year
-                </td>
-
-                @if (course.available == true)
-                {
-                    <td>Available</td>
-                }
-                else
-                {
-                    <td>Currently Unavailable</td>
-                }
-
-
-
-            </tr>
+          <td>Available</td>
         }
-    </tbody>
+        else
+        {
+          <td>Currently Unavailable</td>
+        }
+      </tr>
+    }
+  </tbody>
 </table>

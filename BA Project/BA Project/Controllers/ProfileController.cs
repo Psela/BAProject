@@ -82,10 +82,15 @@ namespace BA_Project.Controllers
     }
 
     //profile for Lecturers
-    public ActionResult LecturerProfile()
+    public ActionResult LecturerProfile(string id)
     {
+      user lecturer = new user();
+      using (var context = new BAProjectEntities())
+      {
+        lecturer = context.users.FirstOrDefault(x => x.users_id.ToString().Equals(id));
+      }
 
-      return View();
+      return View(lecturer);
 
     }
   }

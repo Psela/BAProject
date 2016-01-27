@@ -1,67 +1,50 @@
-﻿
-@{
-    ViewBag.Title = "LecturerProfile";
-}
+﻿@model DatabaseModel.user
 
-@*<h2>LecturerProfile</h2>*@
+
+<div class="row">
+  <div class="col-lg-6">
+    <center>
+      <img src=@Model.profile_picture />
+    </center>
+  </div>
+  <div class="col-lg-6">
+    <p id="lecName">@Model.full_name </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <table align="center" width="500" cellspacing="3">
+      <tr>
+        <th colspan="2" class="well well-sm" style="font-size:larger;">Contact Details</th>
+      </tr>
+      <tr>
+        <td>Email Address: </td>
+        <td name="email">@Model.email</td>
+      </tr>
+      <tr>
+        <td>Office: </td>
+        <td>@Model.office</td>
+      </tr>
+      <tr>
+        <td>Phone Number: </td>
+        <td name="phone">@(0+Model.phone_number)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
 @section scripts
     {
-    <style type="text/css">
-        table
-        {
-        /* border:2px solid gray;
-        border-left:2px solid gray;
-          border-right:2px solid gray;*/
+  <style type="text/css">
+      table {
         border-spacing: 20px;
         border-collapse: separate;
-        }
+      }
 
-        #lecName
-        {
-            font-size:30px;
-            color:blueviolet;
-        }
-    </style>
-    
-    }
-<br/>
-<br/>
-<div class="row">
-    <div class="col-lg-6">
-        <center>
-            <img src="~/Images/placeholderimage.png" alt="Lecturer's Image" title="placeholder" />
-        </center>
-    </div>
-    <div class="col-lg-6">
-<p id="lecName">Professor Packham </p>
-    </div>
-</div>
-<br/>
-<br/>
-<div class="row">
-    <div class="col-lg-12">
-        <table align="center" width="500" cellspacing="3">
-            <tr>
-                <th colspan="2" class="well well-sm" style="font-size:larger;">Contact Details</th>
-            </tr>
-  
-            <tr>
-                <td>Email Address: </td>
-                <td name="email"></td>
-            </tr>
-            <tr>
-                <td>Department: </td>
-                <td name="dept"></td>
-            </tr>
-            <tr>
-                <td>Office Number: </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Phone Number: </td>
-                <td name="phone"></td>
-            </tr>
-        </table>
-
-    </div>
-    </div>   
+      #lecName {
+        font-size: 30px;
+        color: blueviolet;
+      }
+  </style>
+}

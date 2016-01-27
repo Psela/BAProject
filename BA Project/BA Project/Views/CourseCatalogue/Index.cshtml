@@ -4,15 +4,26 @@
 }
 
 <h1>@ViewBag.Title</h1>
-<br />
-<br />
-<div class="row">
-    <div class="col-lg-12">
+
+
+@{
+  string username = Request.Cookies["user"].Value;
+  int id = 0;
+  using (var context = new DatabaseModel.BAProjectEntities())
+  {
+    id = context.users.FirstOrDefault(x => x.username.Equals(username)).users_id;
+  }
+  if (id != 2)
+  {
+    <div class="row">
+      <div class="col-lg-12">
         <a href="CourseCatalogue/courseInfo">
-            <input type="button" size="5" value="Create New Course" style="float:right;" />
+          <input type="button" size="5" value="Create New Course" style="float:right;" />
         </a>
+      </div>
     </div>
-</div>
+  }
+}
 <table align="center" class="table table-hover">
   <thead>
     <tr>

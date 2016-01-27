@@ -39,4 +39,21 @@ namespace BA_Project.Models
             return lecturer;
         }
     }
+
+    public class DatabaseReader
+    {
+        public List<cours> GetAllCourses()
+        {
+            List<cours> courses = new List<cours>();
+            using (var context = new BAProjectEntities())
+            {
+                foreach (cours course in context.courses)
+                {
+                    courses.Add(course);
+                }
+            }
+
+            return courses;
+        }
+    }
 }

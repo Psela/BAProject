@@ -1,9 +1,9 @@
-﻿@{
+﻿@model DatabaseModel.cours
+
+@{
     ViewBag.Title = "LecturerView";
 }
-
-@*<h2>LecturerView</h2>*@
-<h2><a>Module 1</a></h2>
+<h2><a>@Model.name</a></h2>
 <br/>
 <br/>
 <table align="center" class="table table-hover">
@@ -15,7 +15,14 @@
         </tr>
         </thead>
     <tbody>
+      @foreach (var grade in Model.grades_database)
+      {
         <tr>
+          <td>@grade.user.username</td>
+          <td>@grade.grade</td>
+        </tr>
+      }
+        @*<tr>
             <td>Andrew Abc</td>
             <td>A</td>
         </tr>
@@ -26,7 +33,7 @@
         <tr>
             <td>Andrew Abc</td>
             <td>A</td>
-        </tr>
+        </tr>*@
     </tbody>
 </table>
 

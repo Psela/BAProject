@@ -73,7 +73,7 @@ INSERT INTO BA_Project.dbo.users VALUES(
 	2,
 	'JaneDoe',
 	'JaneDoe',
-	'JaneDoe',
+	'Jane Doe',
 	'jane@doe.com',
 	07546325892,
 	2,
@@ -178,4 +178,9 @@ INSERT INTO BA_Project.dbo.grades_database VALUES(
 	4,
 	2,
 	'A'
+);
+INSERT INTO BA_Project.dbo.grades_database VALUES(
+	1,
+	3,
+	'B'
 );

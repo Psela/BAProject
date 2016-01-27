@@ -25,6 +25,7 @@
   <tbody>
     @using (Html.BeginForm("UpdateGrade", "ReportCard"))
     {
+      string courseName = ViewBag.courseName;
       foreach (var item in Model)
       {
         <tr>
@@ -33,8 +34,9 @@
         </tr>
       }
       <tr>
-        <td colspan="2">
-          <input type="submit" value="Update" id="update" />
+        <td colspan="2" align="center">
+          <input type="hidden" name="courseName" value="@courseName" />
+          <input type="submit" value="Update" id="update">
         </td>
       </tr>
     }

@@ -35,7 +35,8 @@ CREATE TABLE BA_Project.dbo.courses
 	start_date DATE,
 	finish_date DATE,
 	cost SMALLMONEY,
-	available BIT
+	available BIT,
+	approved BIT
 );
 
 CREATE TABLE BA_Project.dbo.grades_database
@@ -127,6 +128,7 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	'20141210',
 	'20170205',
 	£4200.00,
+	1,
 	1
 );
 INSERT INTO BA_Project.dbo.courses VALUES(
@@ -137,7 +139,8 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	'20151010',
 	'20161205',
 	£2400.00,
-	1
+	1,
+	0
 );
 INSERT INTO BA_Project.dbo.courses VALUES(
 	3,
@@ -147,7 +150,8 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	'20141210',
 	'20170205',
 	£1234.00,
-	0
+	0,
+	1
 );
 INSERT INTO BA_Project.dbo.courses VALUES(
 	4,
@@ -157,6 +161,7 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	'20141210',
 	'20170205',
 	£54321.00,
+	0,
 	0
 );
 

@@ -27,6 +27,7 @@ namespace DatabaseModel
         public Nullable<System.DateTime> finish_date { get; set; }
         public Nullable<decimal> cost { get; set; }
         public Nullable<bool> available { get; set; }
+        public Nullable<bool> approved { get; set; }
     
         public virtual user user { get; set; }
         public virtual ICollection<grades_database> grades_database { get; set; }

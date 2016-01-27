@@ -12,35 +12,27 @@ namespace BA_Project.Controllers
 {
   public class ProfileController : Controller
   {
-    public user user;
-
-    public ProfileController()
-    {
-      if (user == null)
-      {
-        user = new user();
-      }
-    }
-
     // GET: Profile
     public ActionResult Index()
     {
-      GetUser();
+      user user = GetUser();
       return View(user);
     }
 
-    private void GetUser()
+    public user GetUser()
     {
+      user user = new user();
       string cookie = HttpContext.Request.Cookies["user"].Value;
       using (var context = new BAProjectEntities())
       {
         user = context.users.FirstOrDefault(x => x.username.Equals(cookie));
       }
+      return user;
     }
 
     public void UpdateData(string desc, string addressline1, string addressline2, string postcode, string phone, string email, string city, string name)
     {
-      GetUser();
+      user user = GetUser();
       if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(desc) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(addressline1) || string.IsNullOrEmpty(postcode) || string.IsNullOrEmpty(phone))
       {
         MessageBox.Show("Not all information has been filled in. Please try again.");

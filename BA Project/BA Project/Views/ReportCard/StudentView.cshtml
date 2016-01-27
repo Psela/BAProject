@@ -1,29 +1,19 @@
-﻿
-@{
-    ViewBag.Title = "StudentView";
-}
+﻿@model Dictionary<string, string>
 
-<br />
-<br />
 <table align="center" class="table table-hover">
-    <thead>
-
-        <tr>
-            <th>Course Name</th>
-            <th>Grade</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>English</td>
-            <td>F</td>
-        </tr>
-        <tr>
-            <td>Maths</td>
-            <td>F</td>
-        </tr>
-        <tr>
-            <td>French/Spanish</td>
-            <td>A</td>
-        </tr>
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>@item.Key</td>
+        <td>@item.Value</td>
+      </tr>
+    }
+  </tbody>
 </table>

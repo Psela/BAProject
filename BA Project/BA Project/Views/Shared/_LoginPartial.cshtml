@@ -15,9 +15,26 @@
       <li>@Html.ActionLink("View Profile", "Index", "Profile")</li>
       <li>@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
         <li class="reportCard">
+            @{ string user = Request.Cookies["user"].Value;
+             int id;
+             using (var context = new DatabaseModel.BAProjectEntities())
+             {
+                 id = context.users.FirstOrDefault(u => u.username.Equals(user)).type_of_user;
+             }
+             if (id == 2)
+             {
+                @Html.ActionLink("Report Card", "Index", "ReportCard")
+                @Html.Partial("_DropDownMenu")
 
-         @Html.ActionLink("Report Card", "Index", "ReportCard")
-         @Html.Partial("_DropDownMenu") 
+             }
+             else
+             {
+                @Html.ActionLink("Report Card", "Index", "ReportCard", new { id = "reportButtonAlternative" })
+
+                @Html.Partial("_DropDownMenu")
+
+             }
+            }
         </li>
       <li >@Html.ActionLink("Help", "Help", "Home")</li>
       <li id="searchBox">

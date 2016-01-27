@@ -1,18 +1,28 @@
 ﻿@using System.Collections.Generic;
 @Styles.Render(@"~\Content\dropDownMenu.css")
 
-@{ 
-    BA_Project.Models.DatabaseReader db = new BA_Project.Models.DatabaseReader();
+@{ string user = Request.Cookies["user"].Value;
+ int id;
+ using (var context = new DatabaseModel.BAProjectEntities())
+ {
+     id = context.users.FirstOrDefault(u => u.username.Equals(user)).type_of_user;
+ }
+ if (id != 2)
+ {
+    
+     BA_Project.Models.DatabaseReader db = new BA_Project.Models.DatabaseReader();
 
-    List<DatabaseModel.cours> courses =  db.GetAllCourses();  
+     List<DatabaseModel.cours> courses = db.GetAllCourses();
+    
+
+    <div class="dropDownDiv">
+        <ul class="dropDownContainer" style="list-style-type: none">
+            @foreach (DatabaseModel.cours course in courses)
+            {
+
+                <li class="dropDownOptions"> <a href="~/ReportCard/LecturerView/@course.course_id.ToString()"> @course.name </a></li>
+            }
+        </ul>
+    </div>
 }
-
-<div class="dropDownDiv">
-    <ul class="dropDownContainer" style="list-style-type: none">
-        @foreach (DatabaseModel.cours course in courses)
-        {
-
-            <li class="dropDownOptions"> <a href="~/ReportCard/LecturerView/@course.course_id.ToString()"> @course.name </a></li>
-        }
-    </ul>
-</div>
+}

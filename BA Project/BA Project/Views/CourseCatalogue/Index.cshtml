@@ -11,7 +11,7 @@
   int id = 0;
   using (var context = new DatabaseModel.BAProjectEntities())
   {
-    id = context.users.FirstOrDefault(x => x.username.Equals(username)).users_id;
+    id = context.users.FirstOrDefault(x => x.username.Equals(username)).type_of_user;
   }
   if (id != 2)
   {

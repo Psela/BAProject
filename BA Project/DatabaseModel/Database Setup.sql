@@ -28,7 +28,7 @@ CREATE TABLE BA_Project.dbo.users
 
 CREATE TABLE BA_Project.dbo.courses
 (
-	course_id INT PRIMARY KEY,
+	course_id INT IDENTITY(1,1) PRIMARY KEY,
 	name VARCHAR(100),
 	outline VARCHAR(100),
 	lecturer INT REFERENCES users,
@@ -121,7 +121,6 @@ INSERT INTO BA_Project.dbo.users VALUES(
 );
 
 INSERT INTO BA_Project.dbo.courses VALUES(
-	1,
 	'Maths',
 	'The theory of the universe and everything',
 	1,
@@ -132,7 +131,6 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	1
 );
 INSERT INTO BA_Project.dbo.courses VALUES(
-	2,
 	'Physics',
 	'The practicality of the universe and everything',
 	1,
@@ -143,7 +141,6 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	0
 );
 INSERT INTO BA_Project.dbo.courses VALUES(
-	3,
 	'Music',
 	'The art of the universe and everything',
 	1,
@@ -154,7 +151,6 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	1
 );
 INSERT INTO BA_Project.dbo.courses VALUES(
-	4,
 	'Theatre',
 	'The show of the universe and everything',
 	1,

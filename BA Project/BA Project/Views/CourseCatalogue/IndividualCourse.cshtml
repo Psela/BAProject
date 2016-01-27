@@ -6,26 +6,29 @@
 
 @Styles.Render("~/Content/IndividualCourse.css")
 <div>
+    <br />
+    <br />
 
     <h2> @Model.name</h2>
-    <h4> @Model.outline</h4>
+    @*<h4> @Model.outline</h4>*@
 
     <div class="courseOutline">
         <p>
             @Model.outline
-            @*Here there will be information about the course<br />
-            information<br />
-            information<br />
-            information<br />
-            information<br />*@
 
         </p>
     </div>
     <div class="otherInformation">
+
+        @{DateTime startDate = DateTime.Parse(Model.start_date.ToString());
+          DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());    
+          }
+
+
         <p id="otherInformationPara">
             Lecturer: @Model.lecturer <br />
-            Start Date: @Model.start_date<br />
-            End Date: @Model.finish_date <br />
+            Start Date: @startDate.Day/@startDate.Month/@startDate.Year<br />
+            End Date: @finishDate.Day/@finishDate.Month/@finishDate.Year <br />
             Cost: @Model.cost <br />
             <input type="checkbox" /> Waiting List*<br />
             *To be put on a waiting list if course if full

@@ -24,4 +24,9 @@ namespace BA_Project.Models
             return listOfCourses;
         }
     }
+
+    public class Lecturer
+    {
+
+    }
 }

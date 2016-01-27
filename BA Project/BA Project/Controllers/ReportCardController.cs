@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,11 +15,12 @@ namespace BA_Project.Controllers
             return View();
         }
 
-        //view for the lecturer-> report card
-        public ActionResult LecturerView()
+    //view for the lecturer
+    public ActionResult LecturerView(string id)
         {
-            return View();
-           
+      CourseCatalogueController courseCatalogue = new CourseCatalogueController();
+      cours courseToDisplay = courseCatalogue.listOfCourses.FirstOrDefault(x => x.course_id.Equals(id));
+      return View(courseToDisplay);
         }
 
         //view for student report card

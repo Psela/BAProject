@@ -13,7 +13,7 @@ namespace BA_Project.Controllers
     public class CourseCatalogueController : Controller
     {
         Courses courses = new Courses();
-        List<cours> listOfCourses;
+        public List<cours> listOfCourses;
 
         public ActionResult Index()
         {

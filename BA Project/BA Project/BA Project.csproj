@@ -221,6 +221,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\dropDownMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -352,6 +353,10 @@
     <Content Include="Views\ReportCard\LecturerView.cshtml" />
     <Content Include="Views\ReportCard\StudentView.cshtml" />
     <Content Include="Views\Profile\LecturerProfile.cshtml" />
+    <Content Include="Views\CourseCatalogue\_lecturerName.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_DropDownMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

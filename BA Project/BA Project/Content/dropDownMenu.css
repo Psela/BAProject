@@ -27,4 +27,7 @@
     /*background:#DDDDDD;*/
 }
 
-
+#reportButtonAlternative:hover{
+    color:#9D9D9D;
+    cursor:default;
+}

@@ -18,48 +18,63 @@ namespace BA_Project.Controllers
     {
       if (user == null)
       {
-        user= new user();
+        user = new user();
       }
     }
 
     // GET: Profile
     public ActionResult Index()
     {
-      string cookie = HttpContext.Request.Cookies["user"].Value;
-      using (var context = new BAProjectEntities())
-      {
-        user = context.users.FirstOrDefault(x=>x.username.Equals(cookie));
-      }
+      GetUser();
       return View(user);
     }
 
-    public void UpdateData(string desc, string addressline1, string addressline2, string postcode, string phone, string email, string city)
+    private void GetUser()
     {
-      try
+      string cookie = HttpContext.Request.Cookies["user"].Value;
+      using (var context = new BAProjectEntities())
       {
-        using (var context = new BAProjectEntities())
-        {
-          user databaseUser = context.users.FirstOrDefault(u => u.username.Equals(user.username));
-          databaseUser.description = desc;
-          databaseUser.email = email;
-          databaseUser.address_city = city;
-          databaseUser.address_firstline = addressline1;
-          databaseUser.address_secondline = addressline2;
-          databaseUser.postcode = postcode;
-          databaseUser.phone_number = phone;
-
-          context.SaveChanges();
-        }
+        user = context.users.FirstOrDefault(x => x.username.Equals(cookie));
       }
-      catch (Exception ex)
+    }
+
+    public void UpdateData(string desc, string addressline1, string addressline2, string postcode, string phone, string email, string city, string name)
+    {
+      GetUser();
+      if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(desc) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(addressline1) || string.IsNullOrEmpty(postcode) || string.IsNullOrEmpty(phone))
       {
-        if (ex is EntityException || ex is NullReferenceException)
+        MessageBox.Show("Not all information has been filled in. Please try again.");
+      }
+      else
+      {
+        try
         {
-          MessageBox.Show("Couldn't connect to the database. Please try again later.");
+          using (var context = new BAProjectEntities())
+          {
+            user databaseUser = context.users.FirstOrDefault(u => u.username.Equals(user.username));
+
+            databaseUser.full_name = name;
+            databaseUser.description = desc;
+            databaseUser.email = email;
+            databaseUser.address_city = city;
+            databaseUser.address_firstline = addressline1;
+            databaseUser.address_secondline = addressline2;
+            databaseUser.postcode = postcode;
+            databaseUser.phone_number = phone;
+
+            context.SaveChanges();
+          }
         }
-        else
+        catch (Exception ex)
         {
-          throw;
+          if (ex is EntityException || ex is NullReferenceException)
+          {
+            MessageBox.Show("Couldn't connect to the database. Please try again later.");
+          }
+          else
+          {
+            throw;
+          }
         }
       }
 
@@ -67,10 +82,11 @@ namespace BA_Project.Controllers
     }
 
     //profile for Lecturers
-    public ActionResult LecturerProfile() {
+    public ActionResult LecturerProfile()
+    {
 
-        return View();
-    
+      return View();
+
     }
   }
 }

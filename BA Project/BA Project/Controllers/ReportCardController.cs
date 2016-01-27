@@ -26,7 +26,7 @@ namespace BA_Project.Controllers
 
         foreach (var grade in course.grades_database)
         {
-          usernamesAndGrades.Add(grade.user.username, grade.grade);
+          usernamesAndGrades.Add(grade.user.full_name, grade.grade);
         }
       }
       return View(usernamesAndGrades);

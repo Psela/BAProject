@@ -181,6 +181,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\confirmation.css" />
     <Content Include="Content\CourseInfo.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\profile.css" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Profile\LecturerProfile.cshtml" />
     <Content Include="Views\Shared\_DropDownMenu.cshtml" />
     <Content Include="Views\CourseCatalogue\courseInfo.cshtml" />
+    <Content Include="Views\CourseCatalogue\confirmationPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

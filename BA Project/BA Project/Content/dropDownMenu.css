@@ -9,8 +9,7 @@
     border: solid 1px #DDDDDD;
     padding:8px;
     background-color:white;
-    line-height:180%;
-    
+    line-height:180%; 
 }
 
 .reportCard:hover .dropDownDiv{

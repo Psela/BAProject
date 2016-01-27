@@ -13,6 +13,7 @@ namespace BA_Project.Controllers
     public class CourseCatalogueController : Controller
     {
         Courses courses = new Courses();
+        Professor professor = new Professor();
         public List<cours> listOfCourses;
 
         public ActionResult Index()
@@ -24,6 +25,13 @@ namespace BA_Project.Controllers
         {
             cours courseToDisplay = listOfCourses.FirstOrDefault(x => x.course_id.ToString() == id);
             return View(courseToDisplay);
+        }
+
+        public ActionResult LecturerName(string id) //Finds the lecturer using the course id
+        {
+            user prof = professor.GetProfessorById(id);
+
+            return PartialView(prof);
         }
 
         public CourseCatalogueController()

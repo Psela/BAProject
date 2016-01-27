@@ -25,8 +25,18 @@ namespace BA_Project.Models
         }
     }
 
-    public class Lecturer
+    public class Professor 
     {
+        public user GetProfessorById(string id)
+        {
+            user lecturer;
 
+            using (var context = new BAProjectEntities())
+            {
+                lecturer = context.courses.FirstOrDefault(l => l.course_id.ToString().Equals(id)).user;
+            }
+
+            return lecturer;
+        }
     }
 }

@@ -21,12 +21,14 @@
     <div class="otherInformation">
 
         @{DateTime startDate = DateTime.Parse(Model.start_date.ToString());
-          DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());    
+          DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());
+          BA_Project.Models.Professor prof = new BA_Project.Models.Professor();
+          DatabaseModel.user profToDisplay =  prof.GetProfessorById(Model.course_id.ToString());
           }
 
 
         <p id="otherInformationPara">
-            Lecturer: @Model.lecturer <br />
+            Lecturer: @Html.Partial("_lecturerName", profToDisplay)  <br />
             Start Date: @startDate.Day/@startDate.Month/@startDate.Year<br />
             End Date: @finishDate.Day/@finishDate.Month/@finishDate.Year <br />
             Cost: @Model.cost <br />

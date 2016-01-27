@@ -23,7 +23,7 @@ namespace BA_Project.Controllers
       {
         Response.Redirect("~/ReportCard/StudentView/" + user.users_id);
       }
-    }
+      }
 
     //view for the lecturer
     public ActionResult LecturerView(string id)
@@ -70,7 +70,7 @@ namespace BA_Project.Controllers
           throw;
         }
       }
-      Response.Redirect("~/ReportCard/LecturerView/"+course.course_id);
+            Response.Redirect("~/ReportCard/LecturerView/" + course.course_id);
     }
 
     //view for student report card
@@ -83,7 +83,7 @@ namespace BA_Project.Controllers
         List<grades_database> gradeForStudent = gradeDB.FindAll(x => x.student_id.Equals(id)).ToList();
         foreach (var item in gradeForStudent)
         {
-          grades.Add(item.cours.name,item.grade);
+                    grades.Add(item.cours.name, item.grade);
         }
       }
 

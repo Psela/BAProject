@@ -14,7 +14,11 @@
         </li>
       <li>@Html.ActionLink("View Profile", "Index", "Profile")</li>
       <li>@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
-        <li class="reportCard"> @Html.ActionLink("Report Card", "Index", "ReportCard") @Html.Partial("_DropDownMenu") </li>
+        <li class="reportCard">
+
+         @Html.ActionLink("Report Card", "Index", "ReportCard")
+         @Html.Partial("_DropDownMenu") 
+        </li>
       <li >@Html.ActionLink("Help", "Help", "Home")</li>
       <li id="searchBox">
         @Html.TextBox("searchinput", "Search")

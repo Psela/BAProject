@@ -7,6 +7,7 @@
     margin-top:1px;
     width:150px;
     border: solid 1px #DDDDDD;
+    padding-left:3px;
     padding:8px;
     background-color:white;
     line-height:180%; 
@@ -15,4 +16,12 @@
 .reportCard:hover .dropDownDiv{
     display:block;
     box-shadow: 3px 3px 2px #B8B8B8;
+}
+
+.dropDownContainer{
+    padding:0px;
+}
+
+.dropDownOptions:hover{
+    /*background:#DDDDDD;*/
 }

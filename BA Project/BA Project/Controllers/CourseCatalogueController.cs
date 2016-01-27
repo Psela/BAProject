@@ -38,5 +38,10 @@ namespace BA_Project.Controllers
         {
             listOfCourses = courses.GetListOfCourses();
         }
+
+        public ActionResult courseInfo()
+        {
+            return View();
+        }
     }
 }

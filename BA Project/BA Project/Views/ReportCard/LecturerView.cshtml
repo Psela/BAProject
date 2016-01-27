@@ -2,10 +2,15 @@
 
 @section scripts{
   <style type="text/css">
-      button {
+    #update {
+        top:auto;
         width: 100px;
         height: 50px;
       }
+    #grade
+    {
+        text-align:center;
+    }
   </style>
 }
 <h2><a>@ViewBag.courseName</a></h2>
@@ -24,12 +29,12 @@
       {
         <tr>
           <td>@item.Key</td>
-          <td><input type="text" value="@item.Value" name="grade" /></td>
+          <td><input type="text" value="@item.Value" name="grade" id="grade" size="1"/></td>
         </tr>
       }
       <tr>
-        <td colspan="2" align="center">
-          <input type="submit" value="Update" id="update">
+        <td colspan="2">
+          <input type="submit" value="Update" id="update" />
         </td>
       </tr>
     }

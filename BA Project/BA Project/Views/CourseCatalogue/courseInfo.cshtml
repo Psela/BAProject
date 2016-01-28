@@ -1,5 +1,5 @@
 ﻿<h2 id="courseInfotitle">Course Information</h2>
-@using (Html.BeginForm("NewCourse", "CourseCatalogue"))
+@using (Html.BeginForm("AddNewCourse", "CourseCatalogue"))
 {
   <table id="tableInfo" class="table table-bordered table-hover" align="center">
     <thead>
@@ -13,7 +13,7 @@
     <tbody>
       <tr>
         <td><input type="text" name="name" /></td>
-        <td><textarea name="outline" rows="4" cols="40"></textarea></td>
+        <td><input type="text" name="outline" /></td>
         <td><input type="date" name="startdate" /></td>
         <td><input type="date" name="enddate" /></td>
       </tr>

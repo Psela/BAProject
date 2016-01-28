@@ -41,11 +41,11 @@ namespace BA_Project.Controllers
     }
 
     public ActionResult courseInfo()
-    {        
-      List<user> listOfProfessors= new List<user>();
+    {
+      List<user> listOfProfessors = new List<user>();
       using (var context = new BAProjectEntities())
       {
-        listOfProfessors=context.users.Where(x=>x.type_of_user.Equals(1)).ToList();
+        listOfProfessors = context.users.Where(x => x.type_of_user.Equals(1)).ToList();
       }
       return View(listOfProfessors);
     }
@@ -62,6 +62,7 @@ namespace BA_Project.Controllers
 
     public void AddNewCourse(string name, string outline, string startdate, string enddate, int lecturer)
     {
+      bool messageBox = true;
       if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(outline) || string.IsNullOrEmpty(startdate) || string.IsNullOrEmpty(enddate))
       {
         MessageBox.Show("Not all details have been filled out. Please try again.");
@@ -100,6 +101,7 @@ namespace BA_Project.Controllers
               context.courses.Add(course);
               context.SaveChanges();
 
+              messageBox = false;
               Response.Redirect("~/CourseCatalogue/confirmationPage");
             }
           }
@@ -120,8 +122,10 @@ namespace BA_Project.Controllers
           }
         }
       }
-      Response.Redirect("~/CourseCatalogue/courseInfo");
+      if (messageBox)
+      {
+        Response.Redirect("~/CourseCatalogue/courseInfo");
+      }
     }
-
   }
 }

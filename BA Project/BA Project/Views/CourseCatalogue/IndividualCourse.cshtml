@@ -31,6 +31,17 @@
       *To be put on a waiting list if course if full
     </p>
   </div>
-  <button class="registerButton"> Register</button>
+   @{
+       DatabaseModel.user currentuser = new DatabaseModel.user();
+       if (currentuser.type_of_user == 2)
+       {
+        <button class="registerButton"> Register</button>
+       }
+       else if (currentuser.type_of_user == 1)
+       {
+        <button class="registerButton"> Teach this course</button>
+       }
+}
+ 
 
 </div>

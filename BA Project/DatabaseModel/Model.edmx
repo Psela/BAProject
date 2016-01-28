@@ -15,6 +15,7 @@
           <Property Name="lecturer" Type="int" />
           <Property Name="start_date" Type="date" />
           <Property Name="finish_date" Type="date" />
+          <Property Name="application_deadline" Type="date" />
           <Property Name="cost" Type="smallmoney" />
           <Property Name="available" Type="bit" />
           <Property Name="approved" Type="bit" />
@@ -55,7 +56,7 @@
           <Property Name="profile_picture" Type="text" />
           <Property Name="description" Type="varchar" MaxLength="500" />
         </EntityType>
-        <Association Name="FK__courses__lecture__3CBF0154">
+        <Association Name="FK__courses__lecture__090A5324">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="courses" Type="Self.courses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -67,7 +68,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__grades_da__cours__4183B671">
+        <Association Name="FK__grades_da__cours__0DCF0841">
           <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
           <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,7 +80,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__grades_da__stude__4277DAAA">
+        <Association Name="FK__grades_da__stude__0EC32C7A">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
           <End Role="grades_database" Type="Self.grades_database" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,7 +92,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__type_of_u__37FA4C37">
+        <Association Name="FK__users__type_of_u__04459E07">
           <End Role="type_of_users" Type="Self.type_of_users" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -108,19 +109,19 @@
           <EntitySet Name="grades_database" EntityType="Self.grades_database" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="type_of_users" EntityType="Self.type_of_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__courses__lecture__3CBF0154" Association="Self.FK__courses__lecture__3CBF0154">
+          <AssociationSet Name="FK__courses__lecture__090A5324" Association="Self.FK__courses__lecture__090A5324">
             <End Role="users" EntitySet="users" />
             <End Role="courses" EntitySet="courses" />
           </AssociationSet>
-          <AssociationSet Name="FK__grades_da__cours__4183B671" Association="Self.FK__grades_da__cours__4183B671">
+          <AssociationSet Name="FK__grades_da__cours__0DCF0841" Association="Self.FK__grades_da__cours__0DCF0841">
             <End Role="courses" EntitySet="courses" />
             <End Role="grades_database" EntitySet="grades_database" />
           </AssociationSet>
-          <AssociationSet Name="FK__grades_da__stude__4277DAAA" Association="Self.FK__grades_da__stude__4277DAAA">
+          <AssociationSet Name="FK__grades_da__stude__0EC32C7A" Association="Self.FK__grades_da__stude__0EC32C7A">
             <End Role="users" EntitySet="users" />
             <End Role="grades_database" EntitySet="grades_database" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__type_of_u__37FA4C37" Association="Self.FK__users__type_of_u__37FA4C37">
+          <AssociationSet Name="FK__users__type_of_u__04459E07" Association="Self.FK__users__type_of_u__04459E07">
             <End Role="type_of_users" EntitySet="type_of_users" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -166,6 +167,7 @@
           <NavigationProperty Name="user" Relationship="BA_ProjectModel.FK__courses__lecture__31B762FC" FromRole="cours" ToRole="user" />
           <NavigationProperty Name="grades_database" Relationship="BA_ProjectModel.FK__grades_da__cours__367C1819" FromRole="cours" ToRole="grades_database" />
           <Property Name="approved" Type="Boolean" />
+          <Property Name="application_deadline" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="grades_database">
           <Key>
@@ -266,6 +268,7 @@
           <EntitySetMapping Name="courses">
             <EntityTypeMapping TypeName="BA_ProjectModel.cours">
               <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="application_deadline" ColumnName="application_deadline" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
                 <ScalarProperty Name="available" ColumnName="available" />
                 <ScalarProperty Name="cost" ColumnName="cost" />

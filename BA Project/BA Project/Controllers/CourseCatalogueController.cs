@@ -42,7 +42,12 @@ namespace BA_Project.Controllers
 
     public ActionResult courseInfo()
     {
-      return View();
+      List<user> listOfProfessors = new List<user>();
+      using (var context = new BAProjectEntities())
+      {
+        listOfProfessors = context.users.Where(x => x.type_of_user.Equals(1)).ToList();
+      }
+      return View(listOfProfessors);
     }
 
     public ActionResult courseHistory()
@@ -55,35 +60,71 @@ namespace BA_Project.Controllers
       return View();
     }
 
-    public void NewCourse(string name, string outline, string start, string end)
+    public void AddNewCourse(string name, string outline, string startdate, string enddate, int lecturer)
     {
-      using (var context = new BAProjectEntities())
+      bool messageBox = true;
+      if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(outline) || string.IsNullOrEmpty(startdate) || string.IsNullOrEmpty(enddate))
       {
-        string username = Request.Cookies["user"].Value;
-        user user = context.users.FirstOrDefault(x => x.username.Equals(username));
-        int type = user.type_of_user;
-        bool approved = false;
-        int lecturer = 0;
-        if (type == 3)
+        MessageBox.Show("Not all details have been filled out. Please try again.");
+      }
+      else
+      {
+        try
         {
-          approved = true;
+          string username = Request.Cookies["user"].Value;
+          bool approved = false;
+          DateTime start = Convert.ToDateTime(startdate);
+          DateTime end = Convert.ToDateTime(enddate);
+
+          if (start < end)
+          {
+            using (var context = new BAProjectEntities())
+            {
+              user user = context.users.FirstOrDefault(x => x.username.Equals(username));
+              int type = user.type_of_user;
+
+              if (type == 3)
+              {
+                approved = true;
+              }
+
+              cours course = new cours()
+              {
+                name = name,
+                outline = outline,
+                start_date = start,
+                finish_date = end,
+                available = true,
+                approved = approved,
+                lecturer = lecturer
+              };
+              context.courses.Add(course);
+              context.SaveChanges();
+
+              messageBox = false;
+              Response.Redirect("~/CourseCatalogue/confirmationPage");
+            }
+          }
+          else
+          {
+            MessageBox.Show("The start date is after the end date. Please try again.");
+          }
         }
-        else if (type == 1)
+        catch (Exception ex)
         {
-          lecturer = user.users_id;
+          if (ex is EntityException || ex is NullReferenceException)
+          {
+            MessageBox.Show("Couldn't connect to the database. Please try again later.");
+          }
+          else
+          {
+            throw;
+          }
         }
-        cours course = new cours()
-        {
-          name = name,
-          outline = outline,
-          //start_date = (DateTime)20021022,
-          //finish_date = end,
-          available = true,
-          approved = approved,
-          lecturer = lecturer
-        };
-        context.courses.Add(course);
-        context.SaveChanges();
+      }
+      if (messageBox)
+      {
+        Response.Redirect("~/CourseCatalogue/courseInfo");
       }
     }
   }

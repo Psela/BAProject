@@ -56,53 +56,5 @@ namespace BA_Project.Models
       }
       return false;
     }
-
-    public SignInStatus CheckLogin(LoginModel model)
-    {
-      var result = new SignInStatus();
-      try
-      {
-        using (var context = new BAProjectEntities())
-        {
-          user user = new user();
-          var existingUserName = context.users.FirstOrDefault(x => x.username.Equals(model.Login));
-          if (existingUserName == null)
-          {
-            result = SignInStatus.Failure;
-          }
-          else if (existingUserName.password != model.Password)
-          {
-            result = SignInStatus.Failure;
-          }
-          else if (existingUserName.password == model.Password)
-          {
-            result = SignInStatus.Success;
-            //setLogin(true);
-            //Assigns corresponding information for the logged in user
-            user.email = existingUserName.email;
-            user.username = existingUserName.username;
-            user.type_of_user = existingUserName.type_of_user;
-            user.users_id = existingUserName.users_id;
-          }
-          else
-          {
-            result = SignInStatus.Failure;
-          }
-        }
-
-      }
-      catch (Exception ex)
-      {
-        if (ex is EntityException || ex is NullReferenceException)
-        {
-          MessageBox.Show("Couldn't connect to the database. Please try again later.");
-        }
-        else
-        {
-          throw;
-        }
-      }
-      return result;
-    }
   }
 }

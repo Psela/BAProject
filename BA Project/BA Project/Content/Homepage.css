@@ -10,3 +10,20 @@
   margin-left: auto;
     height:400px;
 }
+
+
+#Calendar2
+{
+    top:200px;
+}
+
+.relativeclass{
+    position:relative;
+}
+
+#imgsize{
+    left:0px;
+    height:20px;
+    width:30px;
+   
+}

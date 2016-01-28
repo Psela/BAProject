@@ -1,6 +1,11 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "courseHistory";
+}
+
+@{
+    BA_Project.Models.DatabaseReader db = new BA_Project.Models.DatabaseReader();
+
+    Dictionary<DatabaseModel.cours, DatabaseModel.grades_database> coursesAndGrades = db.GetCoursesAndGrades();
 }
 
 <h2 id="courseInfotitle">Course History</h2>
@@ -12,17 +17,26 @@
             <th>Course Name</th>
             <th>Grade</th>
             <th>Finished Date</th>
-           
+
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
 
-        </tr>
+        @{foreach (KeyValuePair<DatabaseModel.cours, DatabaseModel.grades_database> course in coursesAndGrades)
+        {
+            DateTime finishDate = DateTime.Parse(@course.Key.finish_date.ToString());
+              
+            <tr>
 
+                <td>@course.Key.name</td>
+                <td>@course.Value.grade</td>
+                <td>@finishDate.Day/@finishDate.Month/@finishDate.Year</td>
+
+            </tr>
+
+        }
+
+        }
     </tbody>
 </table>
 

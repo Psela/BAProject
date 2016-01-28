@@ -58,5 +58,27 @@ namespace BA_Project.Models
 
             return courses;
         }
+
+        public Dictionary<cours, grades_database> GetCoursesAndGrades()
+        {
+            Dictionary<cours, grades_database> previousResult = new Dictionary<cours, grades_database>();
+
+            using (var context = new DatabaseModel.BAProjectEntities())
+            {
+                foreach (DatabaseModel.grades_database grade in context.grades_database)
+                {
+                    if (grade.history.Equals(true))
+                    {
+                        cours course = context.courses.FirstOrDefault(c => c.course_id == grade.course_id);
+                        if (!previousResult.ContainsKey(course))
+                        {
+                            previousResult.Add(course, grade);              
+                        }
+                    }
+                }
+            }
+
+            return previousResult;
+        }
     }
 }

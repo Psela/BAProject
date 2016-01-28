@@ -34,6 +34,7 @@ CREATE TABLE BA_Project.dbo.courses
 	lecturer INT REFERENCES users,
 	start_date DATE,
 	finish_date DATE,
+	application_deadline DATE,
 	cost SMALLMONEY,
 	available BIT,
 	approved BIT
@@ -126,6 +127,7 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	1,
 	'20141210',
 	'20170205',
+	'20141210',
 	£4200.00,
 	1,
 	1
@@ -136,6 +138,7 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	1,
 	'20151010',
 	'20161205',
+	'20150505',
 	£2400.00,
 	1,
 	0
@@ -146,6 +149,7 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	1,
 	'20141210',
 	'20170205',
+	'20141010',
 	£1234.00,
 	0,
 	1
@@ -156,6 +160,7 @@ INSERT INTO BA_Project.dbo.courses VALUES(
 	1,
 	'20141210',
 	'20170205',
+	'20141007',
 	£54321.00,
 	0,
 	0

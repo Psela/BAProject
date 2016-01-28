@@ -1,4 +1,5 @@
-﻿<h2 id="courseInfotitle">Course Information</h2>
+﻿@model List<DatabaseModel.user>
+<h2 id="courseInfotitle">Course Information</h2>
 @using (Html.BeginForm("AddNewCourse", "CourseCatalogue"))
 {
   <table id="tableInfo" class="table table-bordered table-hover" align="center">
@@ -13,19 +14,18 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" name="name" placeholder="course name.." autofocus/></td>
-        <td><textarea name="outline" rows="4" cols="40" placeholder="course outline.."></textarea></td>
-          <td>
-              <select>
-                  <option value="johnsmith">Johnsmith</option>
-                  <option value="francel">Francel</option>
-                  <option value="gael">Gael</option>
-              
-              </select>
-
-          </td>
-        <td><input type="date" name="startdate"  placeholder="start date .."/></td>
-        <td><input type="date" name="enddate" placeholder="end date .."/></td>
+        <td><input type="text" name="name" /></td>
+        <td><input type="text" name="outline" /></td>
+        <td>
+          <select name="lecturer">
+            @foreach (var item in Model)
+            {
+              <option value="@item.users_id">@item.full_name</option>
+            }
+          </select>
+        </td>
+        <td><input type="date" name="startdate" /></td>
+        <td><input type="date" name="enddate" /></td>
       </tr>
     </tbody>
   </table>

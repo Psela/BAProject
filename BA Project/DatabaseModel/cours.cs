@@ -28,6 +28,7 @@ namespace DatabaseModel
         public Nullable<decimal> cost { get; set; }
         public Nullable<bool> available { get; set; }
         public Nullable<bool> approved { get; set; }
+        public Nullable<System.DateTime> application_deadline { get; set; }
     
         public virtual user user { get; set; }
         public virtual ICollection<grades_database> grades_database { get; set; }

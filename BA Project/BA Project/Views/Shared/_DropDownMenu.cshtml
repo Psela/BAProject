@@ -20,7 +20,10 @@
             @foreach (DatabaseModel.cours course in courses)
             {
 
-                <li class="dropDownOptions"> <a href="~/ReportCard/LecturerView/@course.course_id.ToString()"> @course.name </a></li>
+                if (course.approved == true)
+                {
+                    <li class="dropDownOptions"> <a href="~/ReportCard/LecturerView/@course.course_id.ToString()"> @course.name </a></li>
+                }
             }
         </ul>
     </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/fullcalendar.css" type="text/css" rel="stylesheet" />
     <link href="~/Content/fullcalendar.print.css" type="text/css" media="print" rel="stylesheet"/>
-    <title>@ViewBag.Title - JCRS</title>
+    <title>@ViewBag.Title JCRS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -20,7 +20,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("JCRS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("JCRppS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Images/jcrs.jpg")" height="60" width="60"/>
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

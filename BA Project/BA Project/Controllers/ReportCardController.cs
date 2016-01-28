@@ -79,11 +79,16 @@ namespace BA_Project.Controllers
       Dictionary<string, string> grades = new Dictionary<string, string>();
       using (var context = new BAProjectEntities())
       {
+
         List<grades_database> gradeDB = context.grades_database.ToList();
         List<grades_database> gradeForStudent = gradeDB.FindAll(x => x.student_id.Equals(id)).ToList();
         foreach (var item in gradeForStudent)
         {
-                    grades.Add(item.cours.name, item.grade);
+            if (item.history == false)
+            {
+                grades.Add(item.cours.name, item.grade);
+                
+            }
         }
       }
 

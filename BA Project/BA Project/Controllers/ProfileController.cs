@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace BA_Project.Controllers
 {
+    [Authorize]
   public class ProfileController : Controller
   {
     // GET: Profile

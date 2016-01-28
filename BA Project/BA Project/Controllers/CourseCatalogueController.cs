@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BA_Project.Controllers
 {
-    [Authorize]
+  [Authorize]
   public class CourseCatalogueController : Controller
   {
     Courses courses = new Courses();
@@ -102,8 +102,15 @@ namespace BA_Project.Controllers
               context.courses.Add(course);
               context.SaveChanges();
 
-              messageBox = false;
-              Response.Redirect("~/CourseCatalogue/confirmationPage");
+              if (approved)
+              {
+                MessageBox.Show(name + " has been added as a course.");
+              }
+              else
+              {
+                messageBox = false;
+                Response.Redirect("~/CourseCatalogue/confirmationPage");
+              }
             }
           }
           else

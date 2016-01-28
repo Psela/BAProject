@@ -1,28 +1,28 @@
 ﻿@model List<DatabaseModel.cours>
 @{
-    ViewBag.Title = "Course Catalogue";
+  ViewBag.Title = "Course Catalogue";
 }
 
 <h1>@ViewBag.Title</h1>
 
 
 @{
-    string username = Request.Cookies["user"].Value;
-    int id = 0;
-    using (var context = new DatabaseModel.BAProjectEntities())
-    {
-        id = context.users.FirstOrDefault(x => x.username.Equals(username)).type_of_user;
-    }
-    if (id != 2)
-    {
-      <div class="row">
-        <div class="col-lg-12">
-          <a href="CourseCatalogue/courseInfo">
-            <input type="button" size="5" value="Create New Course" style="float:right;" />
-          </a>
-        </div>
+  string username = Request.Cookies["user"].Value;
+  int id = 0;
+  using (var context = new DatabaseModel.BAProjectEntities())
+  {
+    id = context.users.FirstOrDefault(x => x.username.Equals(username)).type_of_user;
+  }
+  if (id != 2)
+  {
+    <div class="row">
+      <div class="col-lg-12">
+        <a href="CourseCatalogue/courseInfo">
+          <input type="button" size="5" value="Create New Course" style="float:right;" />
+        </a>
       </div>
-    }
+    </div>
+  }
 }
 <br />
 <br />
@@ -38,33 +38,38 @@
   </thead>
   <tbody>
     @foreach (DatabaseModel.cours course in Model)
-        {
-            if (course.approved == true)
-            {
-              <tr>
-                @{DateTime startDate = DateTime.Parse(course.start_date.ToString());
-                DateTime finishDate = DateTime.Parse(course.finish_date.ToString());
-                DateTime deadline = DateTime.Parse(course.application_deadline.ToString());}
-                <td><a href="~/CourseCatalogue/IndividualCourse/@course.course_id" title="@course.name"> @course.name</a></td>
-                <td>
-                  @startDate.Day/@startDate.Month/@startDate.Year
-                </td>
+    {
+      if (course.approved == true)
+      {
+        <tr>
+          @{DateTime startDate = DateTime.Parse(course.start_date.ToString());
+          DateTime finishDate = DateTime.Parse(course.finish_date.ToString());
+          DateTime deadline = DateTime.Today;
+          if (course.application_deadline != null)
+          {
+            deadline = DateTime.Parse(course.application_deadline.ToString());
+          }
+          }
+          <td><a href="~/CourseCatalogue/IndividualCourse/@course.course_id" title="@course.name"> @course.name</a></td>
+          <td>
+            @startDate.Day/@startDate.Month/@startDate.Year
+          </td>
 
-                <td>
-                  @finishDate.Day/@finishDate.Month/@finishDate.Year
-                </td>
+          <td>
+            @finishDate.Day/@finishDate.Month/@finishDate.Year
+          </td>
 
-                @if (course.available == true)
-                {
-                  <td>Available</td>
-                }
-                else
-                {
-                  <td>Currently Unavailable</td>
-                }
-                <td>@deadline.Day/@deadline.Month/@deadline.Year</td>
-              </tr>
-            }
-        }
+          @if (course.available == true)
+          {
+            <td>Available</td>
+          }
+          else
+          {
+            <td>Currently Unavailable</td>
+          }
+          <td>@deadline.Day/@deadline.Month/@deadline.Year</td>
+        </tr>
+      }
+    }
   </tbody>
 </table>

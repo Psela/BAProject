@@ -1,14 +1,10 @@
 ﻿@model DatabaseModel.cours
 @{
-  ViewBag.Title = "IndividualCourse";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Styles.Render("~/Content/IndividualCourse.css")
 <div>
-  <br />
-  <br />
-
   <h2> @Model.name</h2>
 
   <div class="courseOutline">
@@ -26,22 +22,25 @@
       Lecturer: <a href="~/Profile/LecturerProfile/@profToDisplay.users_id">@profToDisplay.full_name</a><br />
       Start Date: @startDate.Day/@startDate.Month/@startDate.Year<br />
       End Date: @finishDate.Day/@finishDate.Month/@finishDate.Year<br />
-      Cost: £@Model.cost <br />
+      Cost: £@((double)Model.cost)<br />
       <input type="checkbox" /> Waiting List*<br />
       *To be put on a waiting list if course if full
     </p>
   </div>
-   @{
-       DatabaseModel.user currentuser = new DatabaseModel.user();
-       if (currentuser.type_of_user == 2)
-       {
-        <button class="registerButton"> Register</button>
-       }
-       else if (currentuser.type_of_user == 1)
-       {
-        <button class="registerButton"> Teach this course</button>
-       }
-}
- 
-
+  @{
+    string user = Request.Cookies["user"].Value;
+    int id;
+    using (var context = new DatabaseModel.BAProjectEntities())
+    {
+      id = context.users.FirstOrDefault(u => u.username.Equals(user)).type_of_user;
+    }
+    if (id == 2)
+    {
+      <button class="registerButton"> Register</button>
+    }
+    else if (id == 1)
+    {
+      <button class="registerButton"> Teach this course</button>
+    }
+  }
 </div>

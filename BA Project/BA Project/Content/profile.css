@@ -1,8 +1,8 @@
 ﻿
 #relativelayout {
     position:relative;
-   height:800px;
-   overflow:auto;
+   height:750px;
+   overflow: visible;
 }
 
 
@@ -42,14 +42,13 @@ border-radius:10px;
 
 
 #Calendar {
-     /*background-color:olive;*/
-     /*border:2px groove black;*/
      position:absolute;
      /*float:right;*/
        top:300px;
      right:10px;
-     /*height:500px;*/
     width:500px;
+     height:200px;
+
 /*border-radius:10px;*/
 
 }
@@ -76,8 +75,16 @@ border-radius:10px;
     width:70%;
 }
 #update {
-
+    font-size:20px;
+    border: 1px solid #0066CC;
+    border-radius:10px;
+    background-color:#66B2FF;
+    color:white;
     position:relative;
     top:500px;
     left:400px;
+}
+
+#update:hover{
+    background-color:#99ccff;
 }

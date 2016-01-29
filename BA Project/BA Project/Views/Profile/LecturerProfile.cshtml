@@ -3,12 +3,12 @@
 <br/>
 <br/>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-6" id="pictureContainer">
     <center>
       <img src=@Model.profile_picture />
     </center>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-6" id="nameContainer">
     <p id="lecName">@Model.full_name </p>
   </div>
 </div>
@@ -42,11 +42,22 @@
       table {
         border-spacing: 20px;
         border-collapse: separate;
+   
+      }
+
+      #pictureContainer{
+          padding-left:350px;
+      }
+
+      #nameContainer{
+          padding-top:50px;
+          padding-right: 80px;
+
       }
 
       #lecName {
         font-size: 30px;
-        color: blueviolet;
+        color: #66B2FF;
       }
   </style>
 }

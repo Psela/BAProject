@@ -1,0 +1,37 @@
+﻿body {
+}
+
+.navButton{
+    padding:5px;
+    height:60px;
+    color:black;
+    color: black !important;
+}
+
+.navButton:hover{
+    background-color:#66B2FF;
+}
+
+#viewProfile{
+
+}
+
+#courseCatalogue{
+
+}
+
+#reportCard{
+
+}
+
+#help{
+
+}
+
+#searchBox{
+
+}
+
+#logOff{
+
+}

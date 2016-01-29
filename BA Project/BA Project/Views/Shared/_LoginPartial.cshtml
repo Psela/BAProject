@@ -7,14 +7,13 @@
     @Html.AntiForgeryToken()
 
     @Styles.Render(@"~\Content\dropDownMenu.css")
+    @Styles.Render(@"~\Content\navBar.css")
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-        </li>
-      <li>@Html.ActionLink("View Profile", "Index", "Profile")</li>
-      <li>@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
-        <li class="reportCard">
+
+      <li class="navButton" id="viewProfile">@Html.ActionLink("View Profile", "Index", "Profile")</li>
+        <li class="navButton" id="courseCatalogue">@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
+        <li class="reportCard navButton" id="reportCard">
             @{ string user = Request.Cookies["user"].Value;
              int id;
              using (var context = new DatabaseModel.BAProjectEntities())
@@ -36,18 +35,18 @@
              }
             }
         </li>
-      <li >@Html.ActionLink("Help", "Help", "Home")</li>
-      <li id="searchBox">
-        @Html.TextBox("searchinput", "Search")
-        <input type="submit" value="Search" />
-      </li>
-      <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li class="navButton" id="help">@Html.ActionLink("Help", "Help", "Home")</li>
+        <li id="searchBox">
+            @Html.TextBox("searchinput", "Search")
+            <input type="submit" value="Search" />
+        </li>
+        <li class="navButton"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li class="navButton" id="logOff">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

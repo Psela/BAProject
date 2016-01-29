@@ -706,6 +706,7 @@ a.fc-more:hover {
 /* title text */
 
 .fc-toolbar h2 {
+    font-size:20px;
 	margin: 0;
 }
 

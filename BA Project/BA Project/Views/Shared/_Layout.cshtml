@@ -9,6 +9,7 @@
     <title>@ViewBag.Title JCRS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render(@"~/Content/navBar.css")
 
 </head>
 <body>
@@ -21,13 +22,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 @*@Html.ActionLink("JCRppS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-                <a href="@Url.Action("Index", "Home")">
-                    <img src="@Url.Content("~/Images/jcrs.jpg")" height="60" width="60"/>
+                <a  href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Images/jcrs.jpg")" height="60" width="60" />
                 </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="navButton">@Html.ActionLink("Home", "Index", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

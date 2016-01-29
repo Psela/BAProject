@@ -33,7 +33,10 @@
       <th>Start Date</th>
       <th>End Date</th>
       <th>Availability</th>
-      <th>Application Deadline</th>
+      @if (id == 2)
+      {
+        <th>Application Deadline</th>
+      }
     </tr>
   </thead>
   <tbody>
@@ -45,7 +48,7 @@
           @{DateTime startDate = DateTime.Parse(course.start_date.ToString());
           DateTime finishDate = DateTime.Parse(course.finish_date.ToString());
           DateTime deadline = DateTime.Today;
-          if (course.application_deadline != null)
+          if (id == 2 && course.application_deadline != null)
           {
             deadline = DateTime.Parse(course.application_deadline.ToString());
           }
@@ -67,7 +70,10 @@
           {
             <td>Currently Unavailable</td>
           }
-          <td>@deadline.Day/@deadline.Month/@deadline.Year</td>
+          @if (id == 2)
+          {
+            <td>@deadline.Day/@deadline.Month/@deadline.Year</td>
+          }
         </tr>
       }
     }

@@ -11,18 +11,23 @@
     <p>@Model.outline</p>
   </div>
   <div class="otherInformation">
-
-    @{DateTime startDate = DateTime.Parse(Model.start_date.ToString());
-    DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());
-    BA_Project.Models.Professor prof = new BA_Project.Models.Professor();
-    DatabaseModel.user profToDisplay = prof.GetProfessorById(Model.course_id.ToString());
+    @{
+      DateTime startDate = DateTime.Parse(Model.start_date.ToString());
+      DateTime finishDate = DateTime.Parse(Model.finish_date.ToString());
+      BA_Project.Models.Professor prof = new BA_Project.Models.Professor();
+      DatabaseModel.user profToDisplay = prof.GetProfessorById(Model.course_id.ToString());
+      double cost = 0;
+      if (Model.cost != null)
+      {
+        cost = (double)Model.cost;
+      }
     }
 
     <p id="otherInformationPara">
       Lecturer: <a href="~/Profile/LecturerProfile/@profToDisplay.users_id">@profToDisplay.full_name</a><br />
       Start Date: @startDate.Day/@startDate.Month/@startDate.Year<br />
       End Date: @finishDate.Day/@finishDate.Month/@finishDate.Year<br />
-      Cost: £@((double)Model.cost)<br />
+      Cost: £@cost<br />
       <input type="checkbox" /> Waiting List*<br />
       *To be put on a waiting list if course if full
     </p>

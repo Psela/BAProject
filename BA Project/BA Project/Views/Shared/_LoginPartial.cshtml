@@ -41,6 +41,7 @@
             <input type="submit" value="Search" />
         </li>
         <li class="navButton"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li class="navButton">@Html.ActionLink(@User.Identity.Name, "Index", "Profile")</li>
     </ul>
     }
 }
@@ -48,5 +49,6 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li class="navButton" id="logOff">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+       
     </ul>
 }

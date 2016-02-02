@@ -1,5 +1,7 @@
 ﻿@model DatabaseModel.user
-
+@{
+    TempData["image"] = @Model.profile_picture;
+}
 <div id="relativelayout">
   <div id="profilepicture">
     <img src="@Model.profile_picture" height="200"

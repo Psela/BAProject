@@ -11,7 +11,9 @@
 .navButton:hover{
     background-color:#66B2FF;
 }
-
+#profilename{
+    color:white;
+}
 #viewProfile{
 
 }

@@ -1,6 +1,11 @@
 ﻿@model DatabaseModel.user
 @{
-    TempData["image"] = @Model.profile_picture;
+    HttpCookie appCookie = new HttpCookie("AppCookie");
+    appCookie.Value = @Model.profile_picture;
+    var text = appCookie.Value;
+    //appCookie.Expires = DateTime.Now.AddDays(365);
+    Response.Cookies.Add(appCookie);
+    Response.Cookies.Set(appCookie);
 }
 <div id="relativelayout">
   <div id="profilepicture">

@@ -1,54 +1,67 @@
 ﻿@using Microsoft.AspNet.Identity
-
+@{
+    ViewBag.title = "true";
+}
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    @Styles.Render(@"~\Content\dropDownMenu.css")
-    @Styles.Render(@"~\Content\navBar.css")
+        @Styles.Render(@"~\Content\dropDownMenu.css")
+        @Styles.Render(@"~\Content\navBar.css")
 
-    <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
 
-      <li class="navButton" id="viewProfile">@Html.ActionLink("View Profile", "Index", "Profile")</li>
-        <li class="navButton" id="courseCatalogue">@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
-        <li class="reportCard navButton" id="reportCard">
-            @{ string user = Request.Cookies["user"].Value;
-             int id;
-             using (var context = new DatabaseModel.BAProjectEntities())
-             {
-                 id = context.users.FirstOrDefault(u => u.username.Equals(user)).type_of_user;
-             }
-             if (id == 2)
-             {
-                @Html.ActionLink("Report Card", "Index", "ReportCard")
-                @Html.Partial("_DropDownMenu")
+            <li class="navButton" id="viewProfile">@Html.ActionLink("View Profile", "Index", "Profile")</li>
+            <li class="navButton" id="courseCatalogue">@Html.ActionLink("Course Catalogue", "Index", "CourseCatalogue")</li>
+            <li class="reportCard navButton" id="reportCard">
+                @{ string user = Request.Cookies["user"].Value;
+                 int id;
+                 using (var context = new DatabaseModel.BAProjectEntities())
+                 {
+                     id = context.users.FirstOrDefault(u => u.username.Equals(user)).type_of_user;
+                 }
+                 if (id == 2)
+                 {
+                    @Html.ActionLink("Report Card", "Index", "ReportCard")
+                    @Html.Partial("_DropDownMenu")
 
-             }
-             else
-             {
-                @Html.ActionLink("Report Card", "Index", "ReportCard", new { id = "reportButtonAlternative" })
+                 }
+                 else
+                 {
+                    @Html.ActionLink("Report Card", "Index", "ReportCard", new { id = "reportButtonAlternative" })
 
-                @Html.Partial("_DropDownMenu")
+                    @Html.Partial("_DropDownMenu")
 
-             }
+                 }
+                }
+            </li>
+            <li class="navButton" id="help">@Html.ActionLink("Help", "Help", "Home")</li>
+            <li id="searchBox">
+                @Html.TextBox("searchinput", "Search")
+                <input type="submit" value="Search" />
+            </li>
+            <li class="navButton"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+           
+            @if (Request.Cookies["AppCookie"] != null)
+            {
+                var text = Request.Cookies["AppCookie"].Value.ToString();
+           
+                <li class="navButton"><span><a href="@Url.Content("~/Profile/Index")"><img src="@Url.Content(text)" height=" 50" width="50" /></a>
+            @Html.ActionLink(@User.Identity.Name, "Index", "Profile", new { style = "color:White;text-decoration:none;" })
+            </span></li>
             }
-        </li>
-        <li class="navButton" id="help">@Html.ActionLink("Help", "Help", "Home")</li>
-        <li id="searchBox">
-            @Html.TextBox("searchinput", "Search")
-            <input type="submit" value="Search" />
-        </li>
-        <li class="navButton"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        <li class="navButton">@Html.ActionLink(@User.Identity.Name, "Index", "Profile")</li>
-    </ul>
+       
+         
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
         <li class="navButton" id="logOff">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-       
+
     </ul>
 }
+@*@Scripts.Render("~/Content/navBar.css")*@

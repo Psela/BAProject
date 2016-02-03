@@ -169,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CookieConsentAttribute.cs" />
     <Compile Include="Models\Courses.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -184,6 +185,7 @@
     <Content Include="Content\confirmation.css" />
     <Content Include="Content\CourseInfo.css" />
     <Content Include="Content\Homepage.css" />
+    <Content Include="Content\lecturerview.css" />
     <Content Include="Content\navBar.css" />
     <Content Include="Content\profile.css" />
     <Content Include="Content\CourseCatalogue.css" />

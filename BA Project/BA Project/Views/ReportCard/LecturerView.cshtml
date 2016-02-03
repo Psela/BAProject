@@ -1,18 +1,5 @@
 ﻿@model Dictionary<string, string>
 
-@section scripts{
-  <style type="text/css">
-    #update {
-        top:auto;
-        width: 100px;
-        height: 50px;
-      }
-    #grade
-    {
-        text-align:center;
-    }
-  </style>
-}
 <h2><a>@ViewBag.courseName</a></h2>
 
 <table align="center" class="table table-hover">
@@ -42,3 +29,4 @@
     }
   </tbody>
 </table>
+@Scripts.Render("~/Content/lecturerview.css")
